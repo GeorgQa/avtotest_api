@@ -27,7 +27,7 @@ except httpx.RequestError as e:
 
 
 try:
-    headers_for_requests = {"Authorization": f"Bearer {access_token}", "content-type":"application/json" }
+    headers_for_requests = {"Authorization": f"Bearer {access_token}"}
     response_user_me = httpx.get("http://localhost:8000/api/v1/users/me", headers=headers_for_requests)
     print(f"Выводим успешный статус код: {response_user_me.status_code}")
 except httpx.HTTPStatusError as e:
