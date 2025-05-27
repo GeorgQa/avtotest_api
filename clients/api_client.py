@@ -6,13 +6,16 @@ from httpx._types import RequestData, RequestFiles
 class APIClient:
     def __init__(self, client: Client):
         """
-           Базовый api клиент который принимает объект httpx.Client
+           Базовый api клиент, который принимает объект httpx.Client
 
             :param client: Экземпляр httpx.Client для выполнения Http-запрсоов
         """
         self.client  = client
 
-    def get(self, url:URL|str, params) -> Response:
+    def get(self,
+            url:URL|str,
+            params: QueryParams| None = None
+            ) -> Response:
             """
             Выполняет GET-запрос.
 

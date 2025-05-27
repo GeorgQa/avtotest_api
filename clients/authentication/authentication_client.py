@@ -6,7 +6,7 @@ from clients.api_client import APIClient
 
 class LoginRequestDict(TypedDict):
     """
-    Описание структуры запроса на аунтификацию.
+    Описание структуры запроса на аутентификацию.
     """
     email: str
     password: str
@@ -34,7 +34,7 @@ class AuthenticationClient(APIClient):
 
     def refresh_api(self, request:RefreshRequestDict) -> Response:
         """
-        Метод обнояет токен авторизации
+        Метод обновляет токен авторизации
 
         :param request: Словарь с refreshToken
         :return: Ответ от сервера в виде объекта httpx.Response
