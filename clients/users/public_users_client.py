@@ -18,7 +18,7 @@ class PublicUsersClient(APIClient):
     Класс унаследованный от APIClient для работы с api не требующими access_token
     """
 
-    def create_user_api(self, request:dict) -> Response :
+    def create_user_api(self, request:CreateUserRequestDict) -> Response :
         """
         Метод для создания пользователя
 

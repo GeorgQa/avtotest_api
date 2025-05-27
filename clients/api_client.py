@@ -35,10 +35,10 @@ class APIClient:
              """
              Выполняет POST-запрос.
 
-            :param url: URL-адрес эндпоинта.
+             :param url: URL-адрес эндпоинта.
              :param json: Данные в формате JSON.
              :param data: Форматированные данные формы (например, application/x-www-form-urlencoded).
-              :param files: Файлы для загрузки на сервер.
+            :param files: Файлы для загрузки на сервер.
              :return: Объект Response с данными ответа.
              """
              return self.client.post(url, json=json, data=data,files=files)
