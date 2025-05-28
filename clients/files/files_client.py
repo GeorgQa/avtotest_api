@@ -1,4 +1,4 @@
-from importlib.metadata import files
+
 from typing import TypedDict
 
 from httpx import URL, Response
@@ -40,7 +40,7 @@ class FilesClient(APIClient):
         :param file_id: укникальный индификатор файла
         :return: Ответа от сервера в виде объекта httpx.Response
         """
-        return self.client.get(f"/api/v1/files/{file_id}")
+        return self.get(f"/api/v1/files/{file_id}")
 
     def delete_files_api(self, file_id:str) -> Response:
         """
@@ -49,4 +49,4 @@ class FilesClient(APIClient):
         :param file_id: уникальный индификатор файла
         :return: Ответ от сервера в виде объекта httx.Response
         """
-        return  self.client.delete(f"/api/v1/files/{file_id}")
+        return  self.delete(f"/api/v1/files/{file_id}")
