@@ -1,65 +1,68 @@
+from typing import TypedDict
 
 from httpx import Response
-from typing import TypedDict
+
 from clients.api_client import APIClient
-from clients.private_http_builder import get_prived_http_client, AuthenticationUserDict
+from clients.private_http_builder import get_private_http_client, AuthenticationUserDict
 
 
-class UpdateUserRequest(TypedDict):
+class UpdateUserRequestDict(TypedDict):
     """
-    Описание структуры запросов на обновление пользователя.
+    Описание структуры запроса на обновление пользователя.
     """
     email: str | None
     lastName: str | None
     firstName: str | None
     middleName: str | None
 
-class PrivateUserClient(APIClient):
+
+class PrivateUsersClient(APIClient):
     """
     Клиент для работы с /api/v1/users
     """
+
     def get_user_me_api(self) -> Response:
         """
-        Метод для получения текущего пользователя
+        Метод получения текущего пользователя.
 
         :return: Ответ от сервера в виде объекта httpx.Response
         """
-        return self.client.get("/api/v1/users/me")
+        return self.get("/api/v1/users/me")
 
-    def get_user_id(self, user_id: str) -> Response:
+    def get_user_api(self, user_id: str) -> Response:
         """
-        Метод для получения пользователя по user_id
+        Метод получения пользователя по идентификатору.
 
-        :param: user_id - Уникальный uuid пользователя
+        :param user_id: Идентификатор пользователя.
         :return: Ответ от сервера в виде объекта httpx.Response
         """
-        return self.client.get(f"/api/v1/users/{user_id}")
+        return self.get(f"/api/v1/users/{user_id}")
 
-    def update_user_id(self,user_id: str, request:dict) -> Response:
+    def update_user_api(self, user_id: str, request: UpdateUserRequestDict) -> Response:
         """
-        Метод для частичного обновления пользователя по user_id
+        Метод обновления пользователя по идентификатору.
 
-        :param: user_id - Уникальный uuid пользователя
-        :param request - Словарь с телом запроса для частичного обновления пользователя
+        :param user_id: Идентификатор пользователя.
+        :param request: Словарь с email, lastName, firstName, middleName.
         :return: Ответ от сервера в виде объекта httpx.Response
         """
-        return self.client.patch(f"/api/v1/users/{user_id}", json=request)
+        return self.patch(f"/api/v1/users/{user_id}", json=request)
 
-    def delete_user_id(self, user_id:UpdateUserRequest) -> Response:
+    def delete_user_api(self, user_id: str) -> Response:
         """
-        Метод для удаления пользователя по user_id
+        Метод удаления пользователя по идентификатору.
 
-        :param: user_id - Уникальный uuid пользователя
+        :param user_id: Идентификатор пользователя.
         :return: Ответ от сервера в виде объекта httpx.Response
         """
-        return self.client.delete(f"/api/v1/users/{user_id}")
+        return self.delete(f"/api/v1/users/{user_id}")
+
 
 # Добавляем builder для PrivateUsersClient
-def get_private_users_client(user: AuthenticationUserDict) -> PrivateUserClient:
+def get_private_users_client(user: AuthenticationUserDict) -> PrivateUsersClient:
     """
     Функция создаёт экземпляр PrivateUsersClient с уже настроенным HTTP-клиентом.
 
     :return: Готовый к использованию PrivateUsersClient.
     """
-    return PrivateUserClient(client=get_prived_http_client(user))
-
+    return PrivateUsersClient(client=get_private_http_client(user))

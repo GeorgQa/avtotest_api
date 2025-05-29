@@ -1,16 +1,14 @@
-
 from typing import TypedDict
 
-from httpx import URL, Response
+from httpx import Response
 
 from clients.api_client import APIClient
-from clients.private_http_builder import AuthenticationUserDict, get_prived_http_client
+from clients.private_http_builder import AuthenticationUserDict, get_private_http_client
 
 
-
-class CreateFilesRequestDict(TypedDict):
+class CreateFileRequestDict(TypedDict):
     """
-    Описание тела запроса на создание файла
+    Описание структуры запроса на создание файла.
     """
     filename: str
     directory: str
@@ -19,39 +17,40 @@ class CreateFilesRequestDict(TypedDict):
 
 class FilesClient(APIClient):
     """
-    Климент для работы с api  /api/v1/files/
+    Клиент для работы с /api/v1/files
     """
-    def create_files_api(self, request:CreateFilesRequestDict) -> Response:
-        """
-        метод для создания файла
 
-        :param request: словарь содержаший названия файла, директорию жля сохранения, путь до файла
-        :return: Отвтет от сервера в виде обьекта httpx.Resposne
+    def get_file_api(self, file_id: str) -> Response:
         """
-        return self.post(
-            "/api/v1/files/",
-            data=request,
-            #Путь будет на уровне словаря определяться т.е. он не захардкожен
-            files={"upload file": open(request['upload_file'], 'rb')}
-        )
+        Метод получения файла.
 
-    def get_files_api(self, file_id:str) -> Response:
-        """
-        Метод для получения файла
-
-        :param file_id: укникальный индификатор файла
-        :return: Ответа от сервера в виде объекта httpx.Response
+        :param file_id: Идентификатор файла.
+        :return: Ответ от сервера в виде объекта httpx.Response
         """
         return self.get(f"/api/v1/files/{file_id}")
 
-    def delete_files_api(self, file_id:str) -> Response:
+    def create_file_api(self, request: CreateFileRequestDict) -> Response:
         """
-        Метод, который удаляет файл
+        Метод создания файла.
 
-        :param file_id: уникальный индификатор файла
-        :return: Ответ от сервера в виде объекта httx.Response
+        :param request: Словарь с filename, directory, upload_file.
+        :return: Ответ от сервера в виде объекта httpx.Response
         """
-        return  self.delete(f"/api/v1/files/{file_id}")
+        return self.post(
+            "/api/v1/files",
+            data=request,
+            files={"upload_file": open(request['upload_file'], 'rb')}
+        )
+
+    def delete_file_api(self, file_id: str) -> Response:
+        """
+        Метод удаления файла.
+
+        :param file_id: Идентификатор файла.
+        :return: Ответ от сервера в виде объекта httpx.Response
+        """
+        return self.delete(f"/api/v1/files/{file_id}")
+
 
 # Добавляем builder для FilesClient
 def get_files_client(user: AuthenticationUserDict) -> FilesClient:
@@ -60,4 +59,4 @@ def get_files_client(user: AuthenticationUserDict) -> FilesClient:
 
     :return: Готовый к использованию FilesClient.
     """
-    return FilesClient(client=get_prived_http_client(user))
+    return FilesClient(client=get_private_http_client(user))
