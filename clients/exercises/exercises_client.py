@@ -3,7 +3,7 @@ from typing import TypedDict
 from clients.api_client import APIClient
 from httpx import Response
 
-from clients.private_http_builder import AuthenticationUserDict, get_prived_http_client
+from clients.private_http_builder import AuthenticationUserDict, get_private_http_client
 
 
 class GetExercisesQueryDict(TypedDict):
@@ -93,4 +93,4 @@ def get_exercises_client(user: AuthenticationUserDict) -> ExercisesClient:
 
     :return: Готовый к использованию клиент ExercisesClient
     """
-    return ExercisesClient(client=get_prived_http_client(user))
+    return ExercisesClient(client=get_private_http_client(user))
