@@ -91,6 +91,6 @@ def get_exercises_client(user: AuthenticationUserDict) -> ExercisesClient:
     """"
     Функция создает экземпляр класса ExercisesClient с уже настроенным HTTP клиентом
 
-    :return: Готовый к использованию ExercisesClient
+    :return: Готовый к использованию клиент ExercisesClient
     """
     return ExercisesClient(client=get_prived_http_client(user))

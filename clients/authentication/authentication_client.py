@@ -12,7 +12,7 @@ class Tocken(TypedDict):
     refreshToken: str
 
 
-class LoginRequestDict(TypedDict):
+class LoginResponseDict(TypedDict):
     token: Tocken
 
 class LoginRequestDict(TypedDict):
@@ -52,9 +52,9 @@ class AuthenticationClient(APIClient):
         """
         return self.post("/api/v1/authentication/refresh", json=request)
 
-    def login(self, request:LoginRequestDict) -> LoginRequestDict:
+    def login(self, request:LoginRequestDict) -> LoginResponseDict:
         response = self.login_api(request)
-        return  response.json()
+        return response.json()
 
 def get_authentication_client() -> AuthenticationClient:
     """
@@ -64,5 +64,5 @@ def get_authentication_client() -> AuthenticationClient:
     """
     return AuthenticationClient(client= get_public_http_client())
 
-client = get_authentication_client()
-response = client.login()
+# client = get_authentication_client()
+# response = client.login()
