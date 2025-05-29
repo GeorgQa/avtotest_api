@@ -13,9 +13,8 @@ create_user_request = CreateUserRequestDict(
     middleName= faker_data.get_data()['middle']
 )
 
-create_user_response = public_users_client.create_user_api(create_user_request)
-create_user_response_data = create_user_response.json()
-print("Create user data:", create_user_response_data)
+create_user_response = public_users_client.create_user(create_user_request)
+print("Create user data:", create_user_response)
 
 authentication_user = AuthenticationUserDict(
     email=f"{create_user_request['email']}",
@@ -27,6 +26,5 @@ print("auth_user:", authentication_user)
 private_users_client = get_private_users_client(authentication_user)
 print("private", private_users_client)
 
-get_user_response =  private_users_client.get_user_api(create_user_response_data['user']['id'])
-get_user_response_data = get_user_response.json()
-print("Get user data:", get_user_response_data)
+get_user_response =  private_users_client.get_user(create_user_response['user']['id'])
+print("Get user data:", get_user_response)

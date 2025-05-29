@@ -1,3 +1,4 @@
+
 from typing import TypedDict
 
 from httpx import Response
@@ -15,6 +16,18 @@ class UpdateUserRequestDict(TypedDict):
     firstName: str | None
     middleName: str | None
 
+class User(TypedDict):
+    """
+    Описнаие структруы для ответа на получение пользователя.
+    """
+    id: str
+    email: str
+    lastName: str
+    firstName: str
+    middleName: str
+
+class GetUserRequestDict(TypedDict):
+    user_service_pb2: User
 
 class PrivateUsersClient(APIClient):
     """
@@ -37,6 +50,10 @@ class PrivateUsersClient(APIClient):
         :return: Ответ от сервера в виде объекта httpx.Response
         """
         return self.get(f"/api/v1/users/{user_id}")
+
+    def get_user(self,user_id: str) -> GetUserRequestDict :
+        response = self.get_user_api(user_id=user_id)
+        return  response.json()
 
     def update_user_api(self, user_id: str, request: UpdateUserRequestDict) -> Response:
         """
