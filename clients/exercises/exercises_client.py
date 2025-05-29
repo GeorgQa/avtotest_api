@@ -3,15 +3,18 @@ from typing import TypedDict
 from clients.api_client import APIClient
 from httpx import Response
 
-class QueryParamsGetExercises(TypedDict):
+from clients.private_http_builder import AuthenticationUserDict, get_prived_http_client
+
+
+class GetExercisesQueryDict(TypedDict):
     """
-    Описание структуры для запроса на получения списка упраждений в рамках одного курса
+    Описание структуры запроса на получение списка заданий.
     """
     courseId: str
 
-class RequestCreateExercises(TypedDict):
+class CreateExerciseRequestDict(TypedDict):
     """
-    Описнаие структуры для запроса на создание курса
+    Описание структуры для запроса на создание задания
     """
     title : str
     courseId : str
@@ -21,9 +24,9 @@ class RequestCreateExercises(TypedDict):
     description : str
     estimatedTime : str
 
-class RequestUpdateExercises(TypedDict):
+class UpdateExerciseRequestDict(TypedDict):
     """
-    Описнаие структуры для описнания структуры на обновление курса
+    Описание структуры запроса на обновление задания.
     """
     title : str
     maxScore : int
@@ -36,16 +39,16 @@ class  ExercisesClient(APIClient):
     """
     Клиент для работы с api /api/v1/exercises.
     """
-    def get_exercises_for_coureses(self, query:QueryParamsGetExercises) -> Response:
+    def get_exercises_api(self, query:GetExercisesQueryDict) -> Response:
         """
-        Метод для получения списка упражнений в одном курсе
+        Метод получения списка заданий.
 
-        :param query: query params создаеший id курса
-        :return: Ответ от сервера в виде объекта  httpx.Response
+        :param query: Словарь с courseId.
+        :return: Ответ от сервера в виде объекта httpx.Response
         """
         return self.get("/api/v1/exercises", params= query)
 
-    def create_exercises(self, request:RequestCreateExercises) -> Response:
+    def create_exercise_api(self, request:CreateExerciseRequestDict) -> Response:
         """
         Метод для создания упражнения
 
@@ -56,19 +59,19 @@ class  ExercisesClient(APIClient):
 
     def get_exercises(self, exercise_id: str) -> Response:
         """
-        Метод для получения курса по uuid
+        Метод получения задания.
 
-        :param exercise_id: Уникальный индификатор упражнения
+        :param exercise_id: Уникальный Идентификатор задания
         :return:Ответ от сервера в виде объекта  httpx.Response
         """
 
-        return  self.get(f"/api/v1/exercises/{exercise_id}")
+        return self.get(f"/api/v1/exercises/{exercise_id}")
 
-    def update_exercises(self, exercise_id: str, request:RequestUpdateExercises) -> Response:
+    def update_exercises(self, exercise_id: str, request:UpdateExerciseRequestDict) -> Response:
         """
         Метод для обновления курса
 
-        :param exercise_id: Уникальный индификатор курса
+        :param exercise_id: Уникальный Идентификатор задания
         :param request: Словарь для обновления упражнения
         :return:Ответ от сервера в виде объекта  httpx.Response
         """
@@ -78,7 +81,16 @@ class  ExercisesClient(APIClient):
         """
         Метод для удаления упражнения
 
-        :param exercise_id: Уникальный индификатор курса
+        :param exercise_id: Уникальный Идентификатор задания
         :return:Ответ от сервера в виде объекта  httpx.Response
         """
         return self.delete(f"/api/v1/exercises/{exercise_id}")
+
+# Добавляем builder для ExercisesClient
+def get_exercises_client(user: AuthenticationUserDict) -> ExercisesClient:
+    """"
+    Функция создает экземпляр класса ExercisesClient с уже настроенным HTTP клиентом
+
+    :return: Готовый к использованию ExercisesClient
+    """
+    return ExercisesClient(client=get_prived_http_client(user))
