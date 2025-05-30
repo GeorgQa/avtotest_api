@@ -1,10 +1,11 @@
+from clients.exercises.exercises_client import get_exercises_client, CreateExerciseRequestDict
 from clients.files.files_client import get_files_client, CreateFileRequestDict
 from clients.private_http_builder import AuthenticationUserDict
 from clients.users.public_users_client import get_public_users_client, CreateUserRequestDict
 from courses.courses_client import get_courses_client, CreateCourseRequestDict
 from tools import faker_data
 
-public_users_client = get_public_users_client()
+pyblic_users_client_for_exercise = get_public_users_client()
 
 create_user_request = CreateUserRequestDict(
     email=faker_data.get_random_email(),
@@ -13,8 +14,8 @@ create_user_request = CreateUserRequestDict(
     firstName=faker_data.get_data()['first'],
     middleName= faker_data.get_data()['middle']
 )
-
-create_user_response = public_users_client.create_user(create_user_request)
+print("User data request:", create_user_request)
+create_user_response = pyblic_users_client_for_exercise.create_user(create_user_request)
 print("Create user data:", create_user_response)
 
 authentication_user = AuthenticationUserDict(
@@ -23,12 +24,13 @@ authentication_user = AuthenticationUserDict(
 )
 
 files_client = get_files_client(authentication_user)
-courses_client =get_courses_client(authentication_user)
+courses_client = get_courses_client(authentication_user)
+exercises_client = get_exercises_client(authentication_user)
 
 create_file_request =  CreateFileRequestDict(
     filename='image.png',
     directory='courses',
-    upload_file='../testdata/files/file_2.png'
+    upload_file='testdata/files/file_2.png'
 )
 create_file_response= files_client.create_file(create_file_request)
 print("Create File Data", create_file_response)
@@ -45,3 +47,17 @@ create_course_request = CreateCourseRequestDict(
 
 create_course_response = courses_client.create_corse(create_course_request)
 print("Create Course Data:", create_course_response)
+
+create_exercises_request = CreateExerciseRequestDict(
+    title="Тестовое задание",
+    courseId= create_course_response['course']['id'],
+    maxScore= 150,
+    minScore= 1,
+    orderIndex = 232323,
+    description="Тест_тест",
+    estimatedTime="2 days"
+)
+
+create_exercises_response = exercises_client.create_exercise(create_exercises_request)
+print("Create Exercises Data:", create_exercises_response)
+

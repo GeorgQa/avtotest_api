@@ -1,9 +1,11 @@
+
 from typing import TypedDict
 
 from clients.api_client import APIClient
 from httpx import Response
 
 from clients.private_http_builder import AuthenticationUserDict, get_private_http_client
+
 
 
 class Exercise(TypedDict):
@@ -19,13 +21,17 @@ class Exercise(TypedDict):
     description: str
     estimatedTime: str
 
-
-
 class GetExercisesQueryDict(TypedDict):
     """
-    Описание структуры запроса на получение списка заданий.
+    Описание стуктуры для запроса на получение списка зданий
     """
     courseId: str
+
+class GetExercisesResponseDict(TypedDict):
+    """
+    Описание структуры ответа на получение списка заданий.
+    """
+    exercises:list[Exercise]
 
 class CreateExerciseRequestDict(TypedDict):
     """
@@ -39,16 +45,30 @@ class CreateExerciseRequestDict(TypedDict):
     description : str
     estimatedTime : str
 
+class CreateExerciseResponseDict(TypedDict):
+    """
+    Описание структуры для ответа на создание задания
+    """
+    exercise:Exercise
+
+class GetExerciseResponseDict(TypedDict):
+    """
+    Описание структуры для ответа на получение одного задания
+    """
+    exercise: Exercise
+
 class UpdateExerciseRequestDict(TypedDict):
     """
     Описание структуры запроса на обновление задания.
     """
-    title : str
-    maxScore : int
-    minScore : int
-    orderIndex : int
-    description : str
-    estimatedTime : str
+    CreateExerciseRequestDict
+    #Решил не копипастить, но описать структуру все равно необходимо в рамках задания
+
+class UpdateExerciseResponseDict(TypedDict):
+    """
+    Описание структуры ответа на обновление задания
+    """
+    exercise: Exercise
 
 class  ExercisesClient(APIClient):
     """
@@ -65,9 +85,9 @@ class  ExercisesClient(APIClient):
 
     def create_exercise_api(self, request:CreateExerciseRequestDict) -> Response:
         """
-        Метод для создания упражнения
+        Метод для создания задания
 
-        :param request: Словарь  с структурой для создания упраждениния
+        :param request: Словарь  с структурой для создания задания
         :return: Ответ от сервера в виде объекта  httpx.Response
         """
         return  self.post("/api/v1/exercises", json= request)
@@ -100,6 +120,22 @@ class  ExercisesClient(APIClient):
         :return:Ответ от сервера в виде объекта  httpx.Response
         """
         return self.delete(f"/api/v1/exercises/{exercise_id}")
+
+    def create_exercise(self, request:CreateExerciseRequestDict) -> CreateExerciseResponseDict:
+        response = self.create_exercise_api(request)
+        return response.json()
+
+    def get_exercise(self, exercise_id: str) -> GetExerciseResponseDict:
+        response = self.create_exercise_api(exercise_id)
+        return response.json()
+
+    def get_exercises(self, query:GetExercisesQueryDict ) -> CreateExerciseResponseDict:
+        response = self.create_exercise_api(query)
+        return response.json()
+
+    def update_exercise(self, request_id:UpdateExerciseRequestDict, exercise_id: str) -> UpdateExerciseResponseDict:
+        response = self.update_exercises_api(request=request_id, exercise_id=exercise_id)
+        return response.json()
 
 # Добавляем builder для ExercisesClient
 def get_exercises_client(user: AuthenticationUserDict) -> ExercisesClient:
