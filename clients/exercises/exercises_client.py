@@ -6,6 +6,21 @@ from httpx import Response
 from clients.private_http_builder import AuthenticationUserDict, get_private_http_client
 
 
+class Exercise(TypedDict):
+    """
+    Описание структуры задания
+    """
+    id: str
+    title: str
+    courseId: str
+    maxScore: int
+    minScore: int
+    orderIndex: int | None
+    description: str
+    estimatedTime: str
+
+
+
 class GetExercisesQueryDict(TypedDict):
     """
     Описание структуры запроса на получение списка заданий.
@@ -57,7 +72,7 @@ class  ExercisesClient(APIClient):
         """
         return  self.post("/api/v1/exercises", json= request)
 
-    def get_exercises(self, exercise_id: str) -> Response:
+    def get_exercise_api(self, exercise_id: str) -> Response:
         """
         Метод получения задания.
 
@@ -67,7 +82,7 @@ class  ExercisesClient(APIClient):
 
         return self.get(f"/api/v1/exercises/{exercise_id}")
 
-    def update_exercises(self, exercise_id: str, request:UpdateExerciseRequestDict) -> Response:
+    def update_exercises_api(self, exercise_id: str, request:UpdateExerciseRequestDict) -> Response:
         """
         Метод для обновления курса
 
@@ -77,7 +92,7 @@ class  ExercisesClient(APIClient):
         """
         return self.patch(f"/api/v1/exercises/{exercise_id}", json= request)
 
-    def delete_exercises(self, exercise_id: str) -> Response:
+    def delete_exercises_api(self, exercise_id: str) -> Response:
         """
         Метод для удаления упражнения
 

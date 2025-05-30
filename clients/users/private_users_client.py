@@ -27,7 +27,10 @@ class User(TypedDict):
     middleName: str
 
 class GetUserRequestDict(TypedDict):
-    user_service_pb2: User
+    """
+    Описание структруы запроса получение пользователя
+    """
+    user: User
 
 class PrivateUsersClient(APIClient):
     """
