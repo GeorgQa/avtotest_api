@@ -14,11 +14,11 @@ class Course(TypedDict):
         """
         id: str
         title: str
-        maxScore: int
-        minScore: int
+        maxScore: int | None
+        minScore: int | None
         description: str
         previewFile: File
-        estimatedTime: str
+        estimatedTime: str | None
         createdByUser: User
 
 class CreateCourseResponseDict(TypedDict):

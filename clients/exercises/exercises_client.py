@@ -41,7 +41,7 @@ class CreateExerciseRequestDict(TypedDict):
     courseId : str
     maxScore : int
     minScore : int
-    orderIndex : int
+    orderIndex : int | None
     description : str
     estimatedTime : str
 
@@ -61,8 +61,14 @@ class UpdateExerciseRequestDict(TypedDict):
     """
     Описание структуры запроса на обновление задания.
     """
-    CreateExerciseRequestDict
-    #Решил не копипастить, но описать структуру все равно необходимо в рамках задания
+    title: str | None
+    courseId: str | None
+    maxScore: int | None
+    minScore: int | None
+    orderIndex: int | None
+    description: str | None
+    estimatedTime: str | None
+
 
 class UpdateExerciseResponseDict(TypedDict):
     """
