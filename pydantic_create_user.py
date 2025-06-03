@@ -29,7 +29,7 @@ class CreateUserRequestSchema(BaseModel):
 """
 Модель на получение ответа с данными созданного пользователя
 
-:return Модель созданного пользователя
+:return Модель ответа созданного пользователя
 """
 class CreateUserResponseSchema(BaseModel):
     user: UserSchema
