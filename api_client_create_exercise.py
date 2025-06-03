@@ -2,7 +2,7 @@ from clients.exercises.exercises_client import get_exercises_client, CreateExerc
 from clients.files.files_client import get_files_client, CreateFileRequestDict
 from clients.private_http_builder import AuthenticationUserDict
 from clients.users.public_users_client import get_public_users_client, CreateUserRequestDict
-from courses.courses_client import get_courses_client, CreateCourseRequestDict
+from clients.courses.courses_client import get_courses_client, CreateCourseRequestDict
 from tools import faker_data
 
 pyblic_users_client_for_exercise = get_public_users_client()
