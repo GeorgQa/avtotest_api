@@ -11,7 +11,7 @@ class CourseSchema(BaseModel):
         """
         model_config = ConfigDict(populate_by_name=True)
 
-        id: str = Field(default_factory= lambda: str(uuid.uuid4()))
+        id: str = Field(default_factory=lambda:str(uuid.uuid4()))
         title: str
         max_score: int | None = Field(alias="maxScore")
         min_score: int | None = Field(alias="minScore")
