@@ -1,9 +1,9 @@
 
-from pydantic import  BaseModel
-from httpx import Client
-
-from clients.authentication.authentication_client import get_authentication_client
+from clients.authentication.authentication_client import \
+    get_authentication_client
 from clients.authentication.authentication_schema import LoginRequestSchema
+from httpx import Client
+from pydantic import BaseModel
 
 
 class AuthenticationUserSchema(BaseModel):

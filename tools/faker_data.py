@@ -1,4 +1,5 @@
 import time
+
 from faker import Faker
 
 fake = Faker("ru")

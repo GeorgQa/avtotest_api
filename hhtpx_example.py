@@ -1,4 +1,5 @@
 import httpx
+
 #
 # headers ={"Authorization": "Bearer my_secret_token"}
 # response_get = httpx.get("https://jsonplaceholder.typicode.com/todos/", headers=headers)

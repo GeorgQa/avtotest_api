@@ -1,6 +1,7 @@
 
 from pydantic import BaseModel, Field
 
+
 class Address(BaseModel):
     city: str
     zip_code: str

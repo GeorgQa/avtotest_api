@@ -1,6 +1,5 @@
 import httpx
 
-
 payload = {
     "email": "test.1748955254.5540535@example.com",
     "password": "ac921213-fa64-4921-bff7-211c7c9447ec"
