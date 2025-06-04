@@ -1,6 +1,6 @@
 
 
-from httpx import Response, Client
+from httpx import Response
 
 from clients.api_client import APIClient
 from clients.public_http_builder import get_public_http_client
@@ -38,7 +38,8 @@ class AuthenticationClient(APIClient):
             raise ValueError(
                 f"Login failed with status code {response.status_code} and response: {response.text}"
             )
-
+        #валидация
+        return LoginResponseSchema.model_validate_json(response.text)
 
 def get_authentication_client() -> AuthenticationClient:
     """

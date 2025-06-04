@@ -1,13 +1,14 @@
 from clients.exercises.exercises_client import get_exercises_client, CreateExerciseRequestDict
 from clients.files.files_client import get_files_client, CreateFileRequestDict
 from clients.private_http_builder import AuthenticationUserSchema
-from clients.users.public_users_client import get_public_users_client, CreateUserRequestDict
+from clients.users.public_users_client import get_public_users_client
 from clients.courses.courses_client import get_courses_client, CreateCourseRequestDict
+from pydantic_create_user import CreateUserRequestSchema
 from tools import faker_data
 
 pyblic_users_client_for_exercise = get_public_users_client()
 
-create_user_request = CreateUserRequestDict(
+create_user_request = CreateUserRequestSchema(
     email=faker_data.get_random_email(),
     password=faker_data.get_data()['password'],
     lastName=faker_data.get_data()['last_name'],
@@ -19,8 +20,8 @@ create_user_response = pyblic_users_client_for_exercise.create_user(create_user_
 print("Create user data:", create_user_response)
 
 authentication_user = AuthenticationUserSchema(
-    email=create_user_request['email'],
-    password=create_user_request['password']
+    email=create_user_request.email,
+    password=create_user_request.password
 )
 
 files_client = get_files_client(authentication_user)
@@ -42,7 +43,7 @@ create_course_request = CreateCourseRequestDict(
     description= "Python API course",
     estimatedTime="2 weeks",
     previewFileId= create_file_response['file']['id'],
-    createdByUserId= create_user_response['user']['id']
+    createdByUserId= create_user_response.user.id
 )
 
 create_course_response = courses_client.create_corse(create_course_request)
