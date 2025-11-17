@@ -32,6 +32,7 @@ class CreateUserResponseSchema(BaseModel):
     """
     Описание модели ответа на создание пользователя
     """
+    model_config = ConfigDict(populate_by_name=True)
     user: UserSchema
 
 class UpdateUserRequestSchema(BaseModel):
