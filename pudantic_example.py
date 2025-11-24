@@ -1,6 +1,4 @@
-
 from pydantic import BaseModel, Field
-
 
 
 class Address(BaseModel):
@@ -13,28 +11,23 @@ class User(BaseModel, strict=True):
     name: str
     email: str
     address: Address
-    is_active: bool = Field(validation_alias='isActive')
+    is_active: bool = Field(validation_alias="isActive")
+
 
 user_data = {
     "id": 1,
     "email": "test_test@example.com",
-    "address": {
-    "city":"World",
-    "zip_code": "232323"
-    },
+    "address": {"city": "World", "zip_code": "232323"},
     "name": "Alice",
-    "isActive": True
+    "isActive": True,
 }
 
 user = User.model_validate(user_data)
 print(user)
 
 
-
 {
-  "type": "object",
-  "properties": {
-    "username": { "type": "string", "minLength": 5, "maxLength": 15}
-    },
-    "required": ["username"]
+    "type": "object",
+    "properties": {"username": {"type": "string", "minLength": 5, "maxLength": 15}},
+    "required": ["username"],
 }

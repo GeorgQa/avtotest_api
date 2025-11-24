@@ -1,4 +1,5 @@
 import httpx
+
 from tools import faker_data
 
 create_user_payload = {

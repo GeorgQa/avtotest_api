@@ -1,8 +1,9 @@
 import uuid
 
+from pydantic import BaseModel, ConfigDict, Field, constr
+
 from clients.files.file_schema import FileSchema
 from clients.users.user_schema import UserSchema
-from pydantic import BaseModel, ConfigDict, Field, constr
 
 
 class CourseSchema(BaseModel):

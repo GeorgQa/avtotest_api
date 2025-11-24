@@ -2,8 +2,9 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import warnings
 
-import course_service_pb2 as course__service__pb2
 import grpc
+
+import course_service_pb2 as course__service__pb2
 
 GRPC_GENERATED_VERSION = "1.71.0"
 GRPC_VERSION = grpc.__version__
