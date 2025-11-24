@@ -4,7 +4,7 @@
  from jsonschema.validators import Draft202012Validator
 
 
- def vaildate_json_schema(instanse: Any, schema: dict) -> None:
+def validate_json_schema(instanse: Any, schema: dict) -> None:
      """
      Функция проверяет валидность JSON-объекта по указанному схеме.
      :param instanse: JSON-объект для проверки
