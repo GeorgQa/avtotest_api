@@ -17,9 +17,6 @@ xml_data = """
 """
 
 root = ET.fromstring(xml_data.strip())
-print(f"user ID:", (root.find('person/id').text))
+print(f"user ID:", (root.find("person/id").text))
 print(f"'first_name':{(root.find('person/first_name').text)}")
 print(f"'adress_street':{(root.find('person/address/street').text)}")
-
-
-

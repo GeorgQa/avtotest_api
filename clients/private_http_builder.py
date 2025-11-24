@@ -1,6 +1,4 @@
-
-from clients.authentication.authentication_client import \
-    get_authentication_client
+from clients.authentication.authentication_client import get_authentication_client
 from clients.authentication.authentication_schema import LoginRequestSchema
 from httpx import Client
 from pydantic import BaseModel
@@ -9,6 +7,7 @@ from pydantic import BaseModel
 class AuthenticationUserSchema(BaseModel):
     email: str
     password: str
+
 
 # Создаем private builder
 def get_private_http_client(user: AuthenticationUserSchema) -> Client:
@@ -30,5 +29,5 @@ def get_private_http_client(user: AuthenticationUserSchema) -> Client:
         timeout=100,
         base_url="http://localhost:8000",
         # Добавляем заголовок авторизации
-        headers={"Authorization": f"Bearer {login_response.token.access_token}"}
+        headers={"Authorization": f"Bearer {login_response.token.access_token}"},
     )

@@ -11,8 +11,8 @@ async def client():
         print(f"Отправка: {messages}")
 
         for j in range(5):
-             response = await websocket.recv()
-             print(f"Ответ от сервера:{response}")
+            response = await websocket.recv()
+            print(f"Ответ от сервера:{response}")
 
 
 asyncio.run(client())

@@ -11,39 +11,36 @@ public_users_client = get_public_users_client()
 
 create_user_request = CreateUserRequestSchema(
     email=faker_data.get_random_email(),
-    password=faker_data.get_data()['password'],
-    lastName=faker_data.get_data()['last_name'],
-    firstName=faker_data.get_data()['first'],
-    middleName= faker_data.get_data()['middle']
+    password=faker_data.get_data()["password"],
+    lastName=faker_data.get_data()["last_name"],
+    firstName=faker_data.get_data()["first"],
+    middleName=faker_data.get_data()["middle"],
 )
 
 create_user_response = public_users_client.create_user(create_user_request)
 print("Create user data:", create_user_response)
 
 authentication_user = AuthenticationUserSchema(
-    email=create_user_request.email,
-    password= create_user_request.password
+    email=create_user_request.email, password=create_user_request.password
 )
 
 files_client = get_files_client(authentication_user)
-courses_client =get_courses_client(authentication_user)
+courses_client = get_courses_client(authentication_user)
 
-create_file_request =  CreateFileRequestSchema(
-    filename='image.png',
-    directory='courses',
-    upload_file='testdata/files/file_2.png'
+create_file_request = CreateFileRequestSchema(
+    filename="image.png", directory="courses", upload_file="testdata/files/file_2.png"
 )
-create_file_response= files_client.create_file(create_file_request)
+create_file_response = files_client.create_file(create_file_request)
 print("Create File Data", create_file_response)
 
 create_course_request = CreateCourseRequestSchema(
     title="Python",
-    maxScore= 100,
-    minScore= 10,
-    description= "Python API course",
+    maxScore=100,
+    minScore=10,
+    description="Python API course",
     estimatedTime="2 weeks",
-    previewFileId= create_file_response.file.id,
-    createdByUserId= create_user_response.user.id
+    previewFileId=create_file_response.file.id,
+    createdByUserId=create_user_response.user.id,
 )
 
 create_course_response = courses_client.create_course(create_course_request)

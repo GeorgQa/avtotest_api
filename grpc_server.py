@@ -11,14 +11,16 @@ class UserServiceServiser(user_service_pb2_grpc.UserServiceServicer):
         return user_service_pb2.GetUserResponse(message=f"Привет, {request.username} ")
 
 
-
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    user_service_pb2_grpc.add_UserServiceServicer_to_server(UserServiceServiser(), server)
-    server.add_insecure_port('[::]:50051')
+    user_service_pb2_grpc.add_UserServiceServicer_to_server(
+        UserServiceServiser(), server
+    )
+    server.add_insecure_port("[::]:50051")
     server.start()
     print("Grpc сервер запущен на порту 50051")
     server.wait_for_termination()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     serve()

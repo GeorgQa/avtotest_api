@@ -11,31 +11,26 @@ from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
 
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    5,
-    29,
-    0,
-    '',
-    'user_service.proto'
+    _runtime_version.Domain.PUBLIC, 5, 29, 0, "", "user_service.proto"
 )
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
-
-
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12user_service.proto\x12\x0buserservice\"G\n\x0eGetUserRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x0f\n\x07telefon\x18\x02 \x01(\t\x12\x12\n\nmax_person\x18\x03 \x01(\x08\"\"\n\x0fGetUserResponse\x12\x0f\n\x07message\x18\x01 \x01(\t2S\n\x0bUserService\x12\x44\n\x07GetUser\x12\x1b.userservice.GetUserRequest\x1a\x1c.userservice.GetUserResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n\x12user_service.proto\x12\x0buserservice"G\n\x0eGetUserRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x0f\n\x07telefon\x18\x02 \x01(\t\x12\x12\n\nmax_person\x18\x03 \x01(\x08""\n\x0fGetUserResponse\x12\x0f\n\x07message\x18\x01 \x01(\t2S\n\x0bUserService\x12\x44\n\x07GetUser\x12\x1b.userservice.GetUserRequest\x1a\x1c.userservice.GetUserResponseb\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'user_service_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "user_service_pb2", _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  DESCRIPTOR._loaded_options = None
-  _globals['_GETUSERREQUEST']._serialized_start=35
-  _globals['_GETUSERREQUEST']._serialized_end=106
-  _globals['_GETUSERRESPONSE']._serialized_start=108
-  _globals['_GETUSERRESPONSE']._serialized_end=142
-  _globals['_USERSERVICE']._serialized_start=144
-  _globals['_USERSERVICE']._serialized_end=227
+    DESCRIPTOR._loaded_options = None
+    _globals["_GETUSERREQUEST"]._serialized_start = 35
+    _globals["_GETUSERREQUEST"]._serialized_end = 106
+    _globals["_GETUSERRESPONSE"]._serialized_start = 108
+    _globals["_GETUSERRESPONSE"]._serialized_end = 142
+    _globals["_USERSERVICE"]._serialized_start = 144
+    _globals["_USERSERVICE"]._serialized_end = 227
 # @@protoc_insertion_point(module_scope)

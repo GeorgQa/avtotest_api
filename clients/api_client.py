@@ -7,59 +7,54 @@ from httpx._types import RequestData, RequestFiles
 class APIClient:
     def __init__(self, client: Client):
         """
-           Базовый api клиент, который принимает объект httpx.Client
+        Базовый api клиент, который принимает объект httpx.Client
 
-            :param client: Экземпляр httpx.Client для выполнения Http-запрсоов
+         :param client: Экземпляр httpx.Client для выполнения Http-запрсоов
         """
-        self.client  = client
+        self.client = client
 
-    def get(self,
-            url:URL|str,
-            params: QueryParams| None = None
-            ) -> Response:
-            """
-            Выполняет GET-запрос.
+    def get(self, url: URL | str, params: QueryParams | None = None) -> Response:
+        """
+        Выполняет GET-запрос.
 
-            :param url: URL-адрес эндпоинта.
-            :param params: GET-параметры запроса (например, ?key=value).
-            :return: Объект Response с данными ответа.
-            """
-            return self.client.get(url, params=params)
+        :param url: URL-адрес эндпоинта.
+        :param params: GET-параметры запроса (например, ?key=value).
+        :return: Объект Response с данными ответа.
+        """
+        return self.client.get(url, params=params)
 
     def post(
-            self,
-            url: URL|str | None = None,
-            json: Any | None = None,
-            data: RequestData | None = None,
-            files: RequestFiles | None = None
-            ) -> Response:
-             """
-             Выполняет POST-запрос.
-
-             :param url: URL-адрес эндпоинта.
-             :param json: Данные в формате JSON.
-             :param data: Форматированные данные формы (например, application/x-www-form-urlencoded).
-            :param files: Файлы для загрузки на сервер.
-             :return: Объект Response с данными ответа.
-             """
-             return self.client.post(url, json=json, data=data,files=files)
-
-    def patch(self,
-            url: URL | str | None = None ,
-            json: Any | None = None
-              ) -> Response:
+        self,
+        url: URL | str | None = None,
+        json: Any | None = None,
+        data: RequestData | None = None,
+        files: RequestFiles | None = None,
+    ) -> Response:
         """
-             Выполняет PATCH-запрос (частичное обновление данных).
+         Выполняет POST-запрос.
 
-             :param url: URL-адрес эндпоинта.
-             :param json: Данные для обновления в формате JSON.
-             :return: Объект Response с данными ответа.
-         """
+         :param url: URL-адрес эндпоинта.
+         :param json: Данные в формате JSON.
+         :param data: Форматированные данные формы (например, application/x-www-form-urlencoded).
+        :param files: Файлы для загрузки на сервер.
+         :return: Объект Response с данными ответа.
+        """
+        return self.client.post(url, json=json, data=data, files=files)
+
+    def patch(self, url: URL | str | None = None, json: Any | None = None) -> Response:
+        """
+        Выполняет PATCH-запрос (частичное обновление данных).
+
+        :param url: URL-адрес эндпоинта.
+        :param json: Данные для обновления в формате JSON.
+        :return: Объект Response с данными ответа.
+        """
         return self.client.patch(url, json=json)
 
-    def delete(self,
-               url: URL | str | None = None,
-               ) -> Response:
+    def delete(
+        self,
+        url: URL | str | None = None,
+    ) -> Response:
         """
         Выполняет DELETE-запрос (удаление данных).
 

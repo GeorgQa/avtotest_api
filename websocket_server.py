@@ -11,8 +11,8 @@ async def echo(websocket: ServerConnection):
         await websocket.send(response)
 
 
-async  def main():
-    server = await websockets.serve(echo, host = "localhost", port= 8765)
+async def main():
+    server = await websockets.serve(echo, host="localhost", port=8765)
     print("WebSocket сервер запузен ws://localhost:8765")
     await server.wait_closed()
 

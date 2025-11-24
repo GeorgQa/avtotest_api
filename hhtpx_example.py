@@ -52,7 +52,6 @@ import httpx
 #     print(f"Ошибка запроса: {e}")
 
 
-
 try:
     response_client = httpx.get("https://httpbin.org/delay/5", timeout=None)
     print(f"Запрос от клиента пришел успешно {response_client.json()}")

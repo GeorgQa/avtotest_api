@@ -1,9 +1,9 @@
-
-
 from clients.api_client import APIClient
-from clients.authentication.authentication_schema import (LoginRequestSchema,
-                                                          LoginResponseSchema,
-                                                          RefreshRequestSchema)
+from clients.authentication.authentication_schema import (
+    LoginRequestSchema,
+    LoginResponseSchema,
+    RefreshRequestSchema,
+)
 from clients.public_http_builder import get_public_http_client
 from httpx import Response
 
@@ -20,16 +20,20 @@ class AuthenticationClient(APIClient):
         :param request: Словарь с email и password.
         :return: Ответ от сервера в виде объекта httpx.Response
         """
-        return self.post("/api/v1/authentication/login", json=request.model_dump(by_alias=True))
+        return self.post(
+            "/api/v1/authentication/login", json=request.model_dump(by_alias=True)
+        )
 
-    def refresh_api(self, request:RefreshRequestSchema) -> Response:
+    def refresh_api(self, request: RefreshRequestSchema) -> Response:
         """
         Метод обновляет токен авторизации
 
         :param request: Словарь с refreshToken
         :return: Ответ от сервера в виде объекта httpx.Response
         """
-        return self.post("/api/v1/authentication/refresh", json=request.model_dump(by_alias=True))
+        return self.post(
+            "/api/v1/authentication/refresh", json=request.model_dump(by_alias=True)
+        )
 
     def login(self, request: LoginRequestSchema) -> LoginResponseSchema:
         response = self.login_api(request)
@@ -39,8 +43,9 @@ class AuthenticationClient(APIClient):
             raise ValueError(
                 f"Login failed with status code {response.status_code} and response: {response.text}"
             )
-        #валидация
+        # валидация
         return LoginResponseSchema.model_validate_json(response.text)
+
 
 def get_authentication_client() -> AuthenticationClient:
     """
@@ -48,7 +53,8 @@ def get_authentication_client() -> AuthenticationClient:
 
     :return: Готовый к использованию  AuthenticationClient
     """
-    return AuthenticationClient(client= get_public_http_client())
+    return AuthenticationClient(client=get_public_http_client())
+
 
 # client = get_authentication_client()
 # response = client.login()

@@ -4,9 +4,8 @@ import socket
 def server():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    server_address = ('localhost', 12345)
+    server_address = ("localhost", 12345)
     server_socket.bind(server_address)
-
 
     server_socket.listen(5)
     print("Сервер запущен и ждет подключения...")
@@ -24,5 +23,5 @@ def server():
         client_socket.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     server()
