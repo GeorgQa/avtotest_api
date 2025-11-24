@@ -4,6 +4,7 @@ env/
 .venv/
 env/
 ENV/
+.png
 
 # === Python ===
 __pycache__/
