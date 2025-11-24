@@ -4,12 +4,12 @@ message GetCoursesRequest {
      string course_id = 1;
 }
 
-message GetCousesResponse {
+message GetCoursesResponse {
     string course_id = 1;
     string title = 2;
     string descriptions = 3;
 }
 
 service CourseService {
-    rpc GetCourse(GetCoursesRequest) returns(GetCousesResponse);
+    rpc GetCourse(GetCoursesRequest) returns(GetCoursesResponse);
 }
