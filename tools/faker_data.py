@@ -110,5 +110,7 @@ class Fake:
         return self.integer(start=10, end=30)
 
 
-fake_en = Fake(faker=Faker())
-fake_ru = Fake(faker=Faker("ru_RU"))
+fake_en = Fake("en_US")
+fake_ru = Fake("ru_RU")
+
+fake = Fake("en_US")
