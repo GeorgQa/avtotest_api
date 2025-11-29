@@ -12,11 +12,11 @@ from tools import faker_data
 pyblic_users_client_for_exercise = get_public_users_client()
 
 create_user_request = CreateUserRequestSchema(
-    email=faker_data.get_random_email(),
-    password=faker_data.get_data()["password"],
-    lastName=faker_data.get_data()["last_name"],
-    firstName=faker_data.get_data()["first"],
-    middleName=faker_data.get_data()["middle"],
+    email=faker_data.fake_ru.email(),
+    password=faker_data.fake_en.password(),
+    lastName=faker_data.fake_ru.last_name(),
+    firstName=faker_data.fake_ru.first_name(),
+    middleName=faker_data.fake_ru.middle_name(),
 )
 print("User data request:", create_user_request)
 create_user_response = pyblic_users_client_for_exercise.create_user(create_user_request)

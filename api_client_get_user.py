@@ -7,12 +7,13 @@ from tools import faker_data
 public_users_client = get_public_users_client()
 
 create_user_request = CreateUserRequestSchema(
-    email=faker_data.get_random_email(),
-    password=faker_data.get_data()["password"],
-    last_name=faker_data.get_data()["last_name"],
-    first_name=faker_data.get_data()["first"],
-    middle_name=faker_data.get_data()["middle"],
+    email=faker_data.fake_en.email(),
+    password=faker_data.fake_en.password(),
+    last_name=faker_data.fake_en.last_name(),
+    first_name=faker_data.fake_en.first_name(),
+    middle_name=faker_data.fake_en.middle_name()
 )
+
 
 create_user_response = public_users_client.create_user(create_user_request)
 print("Create user data:", create_user_response)

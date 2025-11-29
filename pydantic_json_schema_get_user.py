@@ -5,10 +5,11 @@ from clients.users.user_schema import CreateUserRequestSchema, GetUserResponseSc
 from tools import faker_data
 from tools.assertions.sсhema import validate_json_schema
 
+
 public_users_client = get_public_users_client()
 
 create_user_request = CreateUserRequestSchema(
-    email=faker_data.get_random_email(),
+    email=faker_data.fake_en.email(),
     password="string",
     last_name="string",
     first_name="string",

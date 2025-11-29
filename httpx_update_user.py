@@ -3,11 +3,11 @@ import httpx
 from tools import faker_data
 
 create_user_payload = {
-    "email": faker_data.get_random_email(),
-    "password": faker_data.get_data()["password"],
-    "lastName": faker_data.get_data()["last_name"],
-    "firstName": faker_data.get_data()["first"],
-    "middleName": faker_data.get_data()["middle"],
+    "email": faker_data.fake_en.email(),
+    "password": faker_data.fake_en.password(),
+    "lastName": faker_data.fake_ru.last_name(),
+    "firstName": faker_data.fake_ru.first_name(),
+    "middleName": faker_data.fake_ru.middle_name()
 }
 
 print("Data_from_create_user", create_user_payload)
@@ -37,10 +37,12 @@ update_user_payload = {
 print("Payload:", update_user_payload)
 
 body_update_user = {
-    "email": faker_data.get_random_email(),
-    "lastName": faker_data.get_data()["last_name"],
-    "firstName": faker_data.get_data()["first"],
-    "middleName": faker_data.get_data()["middle"],
+        "email": faker_data.fake_en.email(),
+
+
+    "lastName": faker_data.fake_ru.last_name(),
+   "firstName": faker_data.fake_ru.first_name(),
+   "middleName": faker_data.fake_ru.middle_name()
 }
 
 update_user_response = httpx.patch(

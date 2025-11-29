@@ -3,12 +3,12 @@
 from clients.users.public_users_client import get_public_users_client
 from clients.users.user_schema import CreateUserRequestSchema, CreateUserResponseSchema
 from tools.assertions.sсhema import validate_json_schema
-from tools.faker_data import get_random_email
+from tools.faker_data import fake_en
 
 public_users_client = get_public_users_client()
 
 create_user_request = CreateUserRequestSchema(
-    email=get_random_email(),
+    email=fake_en.email(),
     password="string",
     last_name="string",
     first_name="string",
