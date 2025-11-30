@@ -7,7 +7,7 @@ create_user_payload = {
     "password": faker_data.fake_en.password(),
     "lastName": faker_data.fake_ru.last_name(),
     "firstName": faker_data.fake_ru.first_name(),
-    "middleName": faker_data.fake_ru.middle_name()
+    "middleName": faker_data.fake_ru.middle_name(),
 }
 
 print("Data_from_create_user", create_user_payload)
@@ -37,12 +37,10 @@ update_user_payload = {
 print("Payload:", update_user_payload)
 
 body_update_user = {
-        "email": faker_data.fake_en.email(),
-
-
+    "email": faker_data.fake_en.email(),
     "lastName": faker_data.fake_ru.last_name(),
-   "firstName": faker_data.fake_ru.first_name(),
-   "middleName": faker_data.fake_ru.middle_name()
+    "firstName": faker_data.fake_ru.first_name(),
+    "middleName": faker_data.fake_ru.middle_name(),
 }
 
 update_user_response = httpx.patch(

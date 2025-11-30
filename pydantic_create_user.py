@@ -1,6 +1,9 @@
 import uuid
+from typing import Annotated
 
-from pydantic import BaseModel, EmailStr, Field, constr
+from pydantic import BaseModel, EmailStr, Field, StringConstraints, constr
+
+from tools.faker_data import fake
 
 """
 Модель данных пользователя
@@ -11,10 +14,14 @@ from pydantic import BaseModel, EmailStr, Field, constr
 
 class UserSchema(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    email: constr(min_length=1, max_length=250) = EmailStr
-    last_name: constr(min_length=1, max_length=50) = Field(alias="lastName")
-    first_name: constr(min_length=1, max_length=50) = Field(alias="firstName")
-    middle_name: constr(min_length=1, max_length=50) = Field(alias="middleName")
+    email: Annotated[str, StringConstraints(min_length=1, max_length=250)] = Field(
+        default_factory=fake.email,
+        validation_alias="email",
+        serialization_alias="email",
+    )
+    last_name: str = Field(alias="lastName", min_length=1, max_length=50)
+    first_name: str = Field(alias="firstName", min_length=1, max_length=50)
+    middle_name: str = Field(alias="middleName", min_length=1, max_length=50)
 
 
 """
@@ -25,11 +32,22 @@ class UserSchema(BaseModel):
 
 
 class CreateUserRequestSchema(BaseModel):
-    email: constr(min_length=1, max_length=250) = EmailStr
-    password: constr(min_length=1, max_length=250)
-    last_name: constr(min_length=1, max_length=50) = Field(alias="lastName")
-    first_name: constr(min_length=1, max_length=50) = Field(alias="firstName")
-    middle_name: constr(min_length=1, max_length=50) = Field(alias="middleName")
+    email: EmailStr = Field(
+        alias="email", min_length=1, max_length=250, default_factory=fake.email
+    )
+    last_name: str = Field(
+        alias="lastName", min_length=1, max_length=50, default_factory=fake.last_name
+    )
+    first_name: str = Field(
+        alias="firstName", min_length=1, max_length=50, default_factory=fake.first_name
+    )
+    middle_name: str = Field(
+        alias="middleName",
+        min_length=1,
+        max_length=50,
+        default_factory=fake.middle_name,
+    )
+    password: str = Field(min_length=8, max_length=250, default_factory=fake.password)
 
 
 """

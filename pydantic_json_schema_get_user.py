@@ -5,7 +5,6 @@ from clients.users.user_schema import CreateUserRequestSchema, GetUserResponseSc
 from tools import faker_data
 from tools.assertions.sсhema import validate_json_schema
 
-
 public_users_client = get_public_users_client()
 
 create_user_request = CreateUserRequestSchema(
@@ -13,7 +12,7 @@ create_user_request = CreateUserRequestSchema(
     password="string",
     last_name="string",
     first_name="string",
-    middle_name="string"
+    middle_name="string",
 )
 
 create_user_response = public_users_client.create_user(create_user_request)

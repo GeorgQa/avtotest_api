@@ -11,7 +11,7 @@ create_user_request = CreateUserRequestSchema(
     password=faker_data.fake_en.password(),
     last_name=faker_data.fake_en.last_name(),
     first_name=faker_data.fake_en.first_name(),
-    middle_name=faker_data.fake_en.middle_name()
+    middle_name=faker_data.fake_en.middle_name(),
 )
 
 

@@ -1,5 +1,3 @@
-
-
 from clients.users.public_users_client import get_public_users_client
 from clients.users.user_schema import CreateUserRequestSchema, CreateUserResponseSchema
 from tools.assertions.sсhema import validate_json_schema

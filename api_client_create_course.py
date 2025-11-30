@@ -14,7 +14,7 @@ create_user_request = CreateUserRequestSchema(
     password=faker_data.fake_en.password(),
     lastName=faker_data.fake_ru.last_name(),
     firstName=faker_data.fake_ru.first_name(),
-    middleName = faker_data.fake_ru.middle_name()
+    middleName=faker_data.fake_ru.middle_name(),
 )
 
 create_user_response = public_users_client.create_user(create_user_request)

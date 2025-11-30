@@ -1,14 +1,13 @@
 import httpx
 
-
 from tools import faker_data
 
 create_user_payload = {
-     "email": faker_data.fake_en.email(),
-"password": faker_data.fake_en.password(),
+    "email": faker_data.fake_en.email(),
+    "password": faker_data.fake_en.password(),
     "lastName": faker_data.fake_ru.last_name(),
-   "firstName": faker_data.fake_ru.first_name(),
-   "middleName": faker_data.fake_ru.middle_name()
+    "firstName": faker_data.fake_ru.first_name(),
+    "middleName": faker_data.fake_ru.middle_name(),
 }
 
 print(create_user_payload["email"])

@@ -5,6 +5,7 @@ class Fake:
     """
     Класс для генерации случайных тестовых данных с использованием библиотеки Faker
     """
+
     def __init__(self, faker: Faker):
         """
         :param faker: Экземпляр класса Faker, который будет использоваться для генерации данных
@@ -110,7 +111,6 @@ class Fake:
         return self.integer(start=10, end=30)
 
 
-fake_en = Fake("en_US")
-fake_ru = Fake("ru_RU")
-
-fake = Fake("en_US")
+fake_en = Fake(Faker("en_US"))
+fake_ru = Fake(Faker("ru_RU"))
+fake = Fake(Faker("en_US"))
