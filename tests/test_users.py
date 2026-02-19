@@ -10,6 +10,9 @@ from tools.assertions.users import assert_create_user_response
 
 
 def test_create_user():
+    """
+    Тест создания нового юзера
+    """
     public_users_client = get_public_users_client()
     request = CreateUserRequestSchema()
     response = public_users_client.create_user_api(request)
@@ -24,27 +27,25 @@ def test_create_user():
     validate_json_schema(response.json(), response_data.model_json_schema())
 
 
-def test_get_user():
-    # Шаг 1: Создаём пользователя
+def test_create_user_and_get_it():
+    """
+    Тест для проверки авторизации и получения информации о новом пользовательтеле
+    """
+
     public_client = get_public_users_client()
     create_request = CreateUserRequestSchema()
-
     create_response = public_client.create_user_api(create_request)
-    # Проверка статус-кода
     assert_status_code(create_response.status_code, HTTPStatus.OK)
-    # Парсим ответ
     create_response_data = CreateUserResponseSchema.model_validate_json(create_response.text)
-    # Проверяем данные пользователя
+
+
     assert_create_user_response(request=create_request, response=create_response_data)
-
-    #проверка статус-кода
+    create_response_data = CreateUserResponseSchema.model_validate_json(create_response.text)
     assert_status_code(create_response.status_code, HTTPStatus.OK)
 
-    # Парсим ответ с помощью jsonschema
-    create_response_data = CreateUserResponseSchema.model_validate_json(create_response.text)
     user_id = create_response_data.user.id
 
-    # Шаг 2: Авторизуемся под созданным пользователем
+
     auth_user = AuthenticationUserSchema(
         email=create_request.email,
         password=create_request.password
@@ -52,15 +53,12 @@ def test_get_user():
 
     private_client = get_private_users_client(auth_user)
 
-    # Шаг 3: Получаем пользователя по ID
+
     get_response = private_client.get_user_api(user_id)
-    #Проверяем статусу код при запросе на получение пользователя
     assert_status_code(get_response.status_code, HTTPStatus.OK)
 
-    # Парсим ответ получения
-    get_response_data = CreateUserResponseSchema.model_validate_json(get_response.text)
 
-    # Шаг 4: Проверяем данные
+    get_response_data = CreateUserResponseSchema.model_validate_json(get_response.text)
 
     assert_equal(get_response_data.user.id,  user_id, 'id')
     assert_equal(get_response_data.user.email , create_request.email,'email')
