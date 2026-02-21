@@ -4,15 +4,16 @@ import pytest
 
 from clients.authentication.authentication_client import AuthenticationClient
 from clients.private_http_builder import AuthenticationUserSchema
-from clients.users.private_users_client import get_private_users_client
+from clients.users.private_users_client import get_private_users_client, PrivateUsersClient
 from clients.users.public_users_client import (PublicUsersClient,
                                                get_public_users_client)
 from clients.users.user_schema import (CreateUserRequestSchema,
-                                       CreateUserResponseSchema)
+                                       CreateUserResponseSchema, GetUserResponseSchema)
+from hhtpx_example import response_client
 from tests.conftest import UserFixture
 from tools.assertions.base import assert_equal, assert_status_code
 from tools.assertions.sсhema import validate_json_schema
-from tools.assertions.users import assert_create_user_response
+from tools.assertions.users import assert_create_user_response, assert_get_user_response
 
 
 @pytest.mark.users
@@ -79,3 +80,27 @@ def test_create_user_and_get_it(
         function_user.response.user.middle_name,
         "middle name",
     )
+
+
+@pytest.mark.users
+@pytest.mark.regression
+def test_get_user_me(private_users_client: PrivateUsersClient, function_user: UserFixture):
+    """
+    Тест на получение данных авторизованного пользователя через /api/v1/users/me.
+
+    Использует фикстуру private_users_client для автоматической аутентификации.
+    Проверяет, что возвращённые данные совпадают с данными созданного пользователя.
+
+    :param private_users_client: Авторизованный клиент для доступа к приватным эндпоинтам.
+    :param function_user: Фикстура с данными созданного пользователя.
+    """
+    # Выполняем запрос к /api/v1/users/me
+    response =private_users_client.get_user_me_api()
+
+    assert_status_code(actual= response.status_code , expected=HTTPStatus.OK)
+
+    # Парсим ответ
+    response_data = GetUserResponseSchema.model_validate_json(response.text)
+
+    # Проверяем, что данные совпадают с ожидаемыми
+    assert_get_user_response(response_data, function_user.response)
