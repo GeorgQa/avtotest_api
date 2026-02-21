@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from tools.faker_data import fake
 
@@ -7,6 +7,8 @@ class LoginRequestSchema(BaseModel):
     """
     Модель запроса на авторизацию
     """
+
+    model_config = ConfigDict(extra="forbid")
 
     email: str = Field(default_factory=fake.email)
     password: str = Field(default_factory=fake.password)

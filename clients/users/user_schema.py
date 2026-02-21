@@ -22,7 +22,7 @@ class CreateUserRequestSchema(BaseModel):
     Описание структуры запроса на создание пользователя.
     """
 
-    model_config = ConfigDict(populate_by_name=True)
+    model_config = ConfigDict(populate_by_name=True, extra="forbid")
 
     email: str = Field(default_factory=fake.email)
     password: str = Field(default_factory=fake.password)

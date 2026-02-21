@@ -2,7 +2,9 @@ from clients.users.user_schema import CreateUserRequestSchema, CreateUserRespons
 from tools.assertions.base import assert_equal
 
 
-def assert_create_user_response(request: CreateUserRequestSchema, response: CreateUserResponseSchema):
+def assert_create_user_response(
+    request: CreateUserRequestSchema, response: CreateUserResponseSchema
+):
     """
     Проверяет, что ответ на создание пользователя соответствует запросу.
 
