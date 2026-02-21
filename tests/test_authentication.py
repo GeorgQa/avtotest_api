@@ -2,22 +2,24 @@ from http import HTTPStatus
 
 import pytest
 
-from tools.assertions.authentication import assert_login_response
-from clients.authentication.authentication_client import (
-    get_authentication_client
-)
-from clients.authentication.authentication_schema import (
-    LoginRequestSchema,
-    LoginResponseSchema,
-)
-from clients.users.public_users_client import  get_public_users_client
+from clients.authentication.authentication_client import AuthenticationClient
+from clients.authentication.authentication_schema import (LoginRequestSchema,
+                                                          LoginResponseSchema)
+from clients.users.public_users_client import PublicUsersClient
 from clients.users.user_schema import CreateUserRequestSchema
-from tools.assertions.base import  assert_status_code
+from tests.conftest import UserFixture
+from tools.assertions.authentication import assert_login_response
+from tools.assertions.base import assert_status_code
 from tools.assertions.sсhema import validate_json_schema
+
 
 @pytest.mark.authentication
 @pytest.mark.regression
-def test_login():
+def test_login(
+    public_users_client: PublicUsersClient,
+    authentication_client: AuthenticationClient,
+    function_user: UserFixture,
+):
     """
     Тест успешной авторизации пользователя в системе.
      Описание шагов:
@@ -26,22 +28,15 @@ def test_login():
     3. Проверяется статус-код ответа.
     4. Проверяется структура и содержание токена в ответе.
     """
-
-    public_client = get_public_users_client()
-    create_user_request = CreateUserRequestSchema()
-
-    public_client.create_user(create_user_request)
-
-    auth_client = get_authentication_client()
-    login_request = LoginRequestSchema(
-        email=create_user_request.email, password=create_user_request.password
+    request = LoginRequestSchema(
+        email=function_user.email, password=function_user.password
     )
 
-    login_response = auth_client.login_api(login_request)
+    response = authentication_client.login_api(request)
 
-    login_response_data = LoginResponseSchema.model_validate_json(login_response.text)
+    response_data = LoginResponseSchema.model_validate_json(response.text)
 
-    assert_status_code(login_response.status_code, HTTPStatus.OK)
-    assert_login_response(login_response_data)
+    assert_status_code(response.status_code, HTTPStatus.OK)
+    assert_login_response(response_data)
 
-    validate_json_schema(login_response.json(), login_response_data.model_json_schema())
+    validate_json_schema(response.json(), response_data.model_json_schema())
