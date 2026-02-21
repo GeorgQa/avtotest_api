@@ -14,7 +14,7 @@ from tools.assertions.base import  assert_status_code
 from tools.assertions.sсhema import validate_json_schema
 
 
-def test_login_authentication():
+def test_login():
     """
     Тест успешной авторизации пользователя в системе.
      Описание шагов:
