@@ -1,5 +1,7 @@
 from http import HTTPStatus
 
+import pytest
+
 from tools.assertions.authentication import assert_login_response
 from clients.authentication.authentication_client import (
     get_authentication_client
@@ -13,7 +15,8 @@ from clients.users.user_schema import CreateUserRequestSchema
 from tools.assertions.base import  assert_status_code
 from tools.assertions.sсhema import validate_json_schema
 
-
+@pytest.mark.authentication
+@pytest.mark.regression
 def test_login():
     """
     Тест успешной авторизации пользователя в системе.
