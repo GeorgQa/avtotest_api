@@ -1,5 +1,7 @@
 from http import HTTPStatus
 
+import pytest
+
 from clients.private_http_builder import AuthenticationUserSchema
 from clients.users.private_users_client import get_private_users_client
 from clients.users.public_users_client import get_public_users_client
@@ -9,6 +11,8 @@ from tools.assertions.sсhema import validate_json_schema
 from tools.assertions.users import assert_create_user_response
 
 
+@pytest.mark.users
+@pytest.mark.regression
 def test_create_user():
     """
     Тест создания нового юзера
@@ -26,7 +30,8 @@ def test_create_user():
     # Проверяем, что тело ответа соответствует ожидаемой JSON-схеме
     validate_json_schema(response.json(), response_data.model_json_schema())
 
-
+@pytest.mark.users
+@pytest.mark.regression
 def test_create_user_and_get_it():
     """
     Тест для проверки авторизации и получения информации о новом пользовательтеле
