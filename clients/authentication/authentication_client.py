@@ -54,6 +54,3 @@ def get_authentication_client() -> AuthenticationClient:
     """
     return AuthenticationClient(client=get_public_http_client())
 
-
-# client = get_authentication_client()
-# response = client.login()
