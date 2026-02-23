@@ -28,7 +28,7 @@ files_client = get_files_client(authentication_user)
 courses_client = get_courses_client(authentication_user)
 
 create_file_request = CreateFileRequestSchema(
-    filename="image.png", directory="courses", upload_file="testdata/files/file_2.png"
+    filename="image.png", directory="courses", upload_file="./testdata/files/image.img"
 )
 create_file_response = files_client.create_file(create_file_request)
 print("Create File Data", create_file_response)
