@@ -3,14 +3,18 @@ import json
 from httpx import Response
 
 from clients.api_client import APIClient
-from clients.exercises.exercises_schema import (CreateExerciseRequestSchema,
-                                                CreateExerciseResponseSchema,
-                                                GetExerciseResponseSchema,
-                                                GetExercisesQuerySchema,
-                                                UpdateExerciseRequestSchema,
-                                                UpdateExerciseResponseSchema)
-from clients.private_http_builder import (AuthenticationUserSchema,
-                                          get_private_http_client)
+from clients.exercises.exercises_schema import (
+    CreateExerciseRequestSchema,
+    CreateExerciseResponseSchema,
+    GetExerciseResponseSchema,
+    GetExercisesQuerySchema,
+    UpdateExerciseRequestSchema,
+    UpdateExerciseResponseSchema,
+)
+from clients.private_http_builder import (
+    AuthenticationUserSchema,
+    get_private_http_client,
+)
 
 
 class ExercisesClient(APIClient):

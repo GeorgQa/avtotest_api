@@ -1,7 +1,6 @@
 import uuid
 
-from pydantic import (BaseModel, ConfigDict, EmailStr, Field, HttpUrl,
-                      computed_field)
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, HttpUrl, computed_field
 from pydantic.alias_generators import to_camel
 from pydantic_core.core_schema import UrlSchema
 

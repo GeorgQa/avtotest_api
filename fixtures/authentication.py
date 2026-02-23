@@ -1,9 +1,9 @@
 import pytest
 
-
 from clients.authentication.authentication_client import (
-    AuthenticationClient, get_authentication_client)
-
+    AuthenticationClient,
+    get_authentication_client,
+)
 
 
 @pytest.fixture
@@ -12,4 +12,3 @@ def authentication_client() -> (
 ):  # Аннотируем возвращаемое фикстурой значение
     # Создаем новый API клиент для работы с аутентификацией
     return get_authentication_client()
-

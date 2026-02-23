@@ -1,10 +1,11 @@
 from httpx import Response
 
 from clients.api_client import APIClient
-from clients.files.file_schema import (CreateFileRequestSchema,
-                                       CreateFileResponseSchema)
-from clients.private_http_builder import (AuthenticationUserSchema,
-                                          get_private_http_client)
+from clients.files.file_schema import CreateFileRequestSchema, CreateFileResponseSchema
+from clients.private_http_builder import (
+    AuthenticationUserSchema,
+    get_private_http_client,
+)
 
 
 class FilesClient(APIClient):
