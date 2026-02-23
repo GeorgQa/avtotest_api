@@ -1,4 +1,5 @@
 import pytest
+from pathlib import Path
 from pydantic import BaseModel
 
 from clients.files.file_schema import CreateFileRequestSchema, CreateFileResponseSchema
@@ -21,6 +22,15 @@ def files_client(function_user: UserFixture) -> FilesClient:
 # Фикстура автоматически создает тестовый файл перед каждым тестом и возвращает информацию о нем
 @pytest.fixture
 def function_file(files_client: FilesClient) -> FileFixture:
-    request = CreateFileRequestSchema(upload_file="./testdata/files/image.jpg")
+    """
+    Фикстура для создания нового файла.
+
+    :param files_client: Авторизованный клиент для работы с файлами.
+    :return: Объект FileFixture с request и response
+    """
+    file_path = Path(__file__).parent.parent / 'testdata' / 'files' / 'image.jpg'
+
+    
+    request = CreateFileRequestSchema(upload_file=str(file_path))
     response = files_client.create_file(request=request)
     return FileFixture(request=request, response=response)
