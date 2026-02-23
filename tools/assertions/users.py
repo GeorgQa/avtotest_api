@@ -1,6 +1,4 @@
-from clients.users.user_schema import (CreateUserRequestSchema,
-                                       CreateUserResponseSchema, UserSchema, GetUserResponseSchema)
-from tests.conftest import private_users_client
+from clients.users.user_schema import CreateUserRequestSchema, CreateUserResponseSchema, UserSchema, GetUserResponseSchema
 from tools.assertions.base import assert_equal
 
 
