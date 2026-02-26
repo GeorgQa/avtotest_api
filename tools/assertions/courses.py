@@ -5,8 +5,9 @@ from clients.courses.course_schema import (
     GetCoursesResponseSchema,
     GetIDCoursesResponseSchema,
     UpdateCourseRequestSchema,
-    UpdateCourseResponseSchema,
+    UpdateCourseResponseSchema, CreateCourseRequestSchema,
 )
+from fixtures.courses import CoursesFixture
 from tools.assertions.base import assert_equal
 from tools.assertions.files import assert_files
 from tools.assertions.users import assert_user
@@ -61,7 +62,7 @@ def assert_get_id_course_response(
 
 def asset_course(
     actual: CourseSchema, expected: CourseSchema
-):  # Опечатка в названии — должно быть assert_course
+):
     """
     Проверяет , что фактиечские данные курса соответствуют ожидаемым.
 
@@ -72,7 +73,7 @@ def asset_course(
     assert_equal(actual.id, expected.id, "id")
     assert_equal(actual.title, expected.title, "title")
     assert_equal(actual.max_score, expected.max_score, "max score")
-    assert_equal(actual.min_score, expected.min_score, "min scrore")
+    assert_equal(actual.min_score, expected.min_score, "min score")
     assert_equal(actual.description, expected.description, "description")
     assert_equal(actual.estimated_time, expected.estimated_time, "estimate time")
 
@@ -95,3 +96,20 @@ def assert_get_courses_response(
         actual_course = get_courses_response.courses[index]
         expected_course = expected_response.course
         asset_course(actual_course, expected_course)
+
+def assert_create_course_response(actual: CreateCourseResponseSchema, expected: CreateCourseRequestSchema):
+    """
+    Проверяет что данные тела запроса соответсвуют данным ответа
+
+    :param create_course_request:  Запрос создания нового курса
+    :param cretae_curce_resposne:   Ответ API при создание курса
+    :raise AsserionError: Если хоть одно поле не совпалo
+    """
+    assert_equal(actual.course.title, expected.title, "title")
+    assert_equal(actual.course.max_score, expected.max_score, "max_score")
+    assert_equal(actual.course.min_score, expected.min_score, "min_score")
+    assert_equal(actual.course.description, expected.description, "description")
+    assert_equal(actual.course.estimated_time, expected.estimated_time, "estimate time")
+
+    assert_equal(actual.course.preview_file.id, expected.preview_file_id, "preview_file_id")
+    assert_equal(actual.course.created_by_user.id, expected.created_by_user_id, "user_id")
