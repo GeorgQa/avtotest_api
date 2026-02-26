@@ -63,14 +63,42 @@ class CreateCourseRequestSchema(BaseModel):
 class UpdateCourseRequestSchema(BaseModel):
     """
     Описание модели запроса на обновление курса.
+    Все поля опциональные.
     """
 
     model_config = ConfigDict(populate_by_name=True)
 
-    title: str | None
-    max_score: int | None = Field(alias="maxScore", default_factory=fake.max_score)
-    min_score: int | None = Field(alias="minScore", default_factory=fake.min_score)
-    description: str | None = Field(default_factory=fake.text)
+    title: str | None = None
+    max_score: int | None = Field(alias="maxScore", default=None)
+    min_score: int | None = Field(alias="minScore", default=None)
+    description: str | None = None
     estimated_time: str | None = Field(
-        alias="estimatedTime", default_factory=fake.estimated_time
+        alias="estimatedTime", default=None
     )
+
+
+class UpdateCourseResponseSchema(BaseModel):
+    """
+    Описание структуры для ответа обновления круса.
+    """
+    course : CourseSchema
+
+
+class GetIDCoursesResponseSchema(BaseModel):
+    """
+    Описание структуры ответа на получение курса по ID
+    """
+    course: CourseSchema
+
+class GetIDCoursesRequestSchema(BaseModel):
+    """
+    Описание структуры ответа на получение курса по ID
+    """
+
+    model_config = ConfigDict(populate_by_name=True)
+
+    course_id : str = Field(alias="id")
+
+class GetCoursesResponseSchema(BaseModel):
+
+     courses: list[CourseSchema]
