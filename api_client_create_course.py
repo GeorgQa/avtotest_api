@@ -18,7 +18,7 @@ create_user_request = CreateUserRequestSchema(
 )
 
 create_user_response = public_users_client.create_user(create_user_request)
-print("Create user data:", create_user_response)
+# print("Create user data:", create_user_response)
 
 authentication_user = AuthenticationUserSchema(
     email=create_user_request.email, password=create_user_request.password
@@ -27,11 +27,16 @@ authentication_user = AuthenticationUserSchema(
 files_client = get_files_client(authentication_user)
 courses_client = get_courses_client(authentication_user)
 
+import os
+
+# Абсолютный путь к файлу
+file_path = os.path.join("C:/courses/autotest-api", "testdata", "files", "image.jpg")
+
 create_file_request = CreateFileRequestSchema(
-    filename="image.png", directory="courses", upload_file="./testdata/files/image.img"
+    filename="image.png", directory="courses", upload_file=file_path
 )
 create_file_response = files_client.create_file(create_file_request)
-print("Create File Data", create_file_response)
+# print("Create File Data", create_file_response)
 
 create_course_request = CreateCourseRequestSchema(
     title="Python",
@@ -44,4 +49,4 @@ create_course_request = CreateCourseRequestSchema(
 )
 
 create_course_response = courses_client.create_course(create_course_request)
-print("Create Course Data:", create_course_response)
+# print("Create Course Data:", create_course_response)

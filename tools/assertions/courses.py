@@ -1,11 +1,19 @@
-from clients.courses.course_schema import UpdateCourseRequestSchema, UpdateCourseResponseSchema, \
-    GetIDCoursesRequestSchema, GetIDCoursesResponseSchema
+from api_client_create_course import create_course_response
+from clients.courses.course_schema import (
+    CourseSchema,
+    CreateCourseResponseSchema,
+    GetCoursesResponseSchema,
+    GetIDCoursesResponseSchema,
+    UpdateCourseRequestSchema,
+    UpdateCourseResponseSchema,
+)
 from tools.assertions.base import assert_equal
+from tools.assertions.files import assert_files
+from tools.assertions.users import assert_user
 
 
 def assert_update_course_response(
-        request: UpdateCourseRequestSchema,
-        response: UpdateCourseResponseSchema
+    request: UpdateCourseRequestSchema, response: UpdateCourseResponseSchema
 ):
     """
     Проверяем, что обьект на нобновление курса соответсвует данным из запроса.
@@ -27,11 +35,14 @@ def assert_update_course_response(
         assert_equal(response.course.description, request.description, "description")
 
     if request.estimated_time is not None:
-        assert_equal(response.course.estimated_time, request.estimated_time, "estimated_time")
+        assert_equal(
+            response.course.estimated_time, request.estimated_time, "estimated_time"
+        )
 
 
-
-def assert_get_id_course_response(request: UpdateCourseResponseSchema, response:GetIDCoursesResponseSchema):
+def assert_get_id_course_response(
+    request: UpdateCourseResponseSchema, response: GetIDCoursesResponseSchema
+):
     """
     Проверка ответа запроса на получение данных о курсе по его ID.
 
@@ -39,11 +50,48 @@ def assert_get_id_course_response(request: UpdateCourseResponseSchema, response:
     :param response: Ответ запроса на получение данных по ID
     :return: Если хоть одно поле не совпало
     """
-    assert_equal(response.course.title, request.course.title , "title" )
-    assert_equal(response.course.max_score, request.course.max_score , "max_score" )
-    assert_equal(response.course.min_score, request.course.min_score , "min_score" )
-    assert_equal(response.course.description, request.course.description , "description" )
-    assert_equal(response.course.estimated_time, request.course.estimated_time , "min_score" )
+    assert_equal(response.course.title, request.course.title, "title")
+    assert_equal(response.course.max_score, request.course.max_score, "max_score")
+    assert_equal(response.course.min_score, request.course.min_score, "min_score")
+    assert_equal(response.course.description, request.course.description, "description")
+    assert_equal(
+        response.course.estimated_time, request.course.estimated_time, "min_score"
+    )
 
 
+def asset_course(
+    actual: CourseSchema, expected: CourseSchema
+):  # Опечатка в названии — должно быть assert_course
+    """
+    Проверяет , что фактиечские данные курса соответствуют ожидаемым.
 
+    :param actual: Фактические значения полей
+    :param expectted: Значения которые должны быть в результате выполнения тестов
+    :raise AsserionError: Если хоть одно поле не совпалo
+    """
+    assert_equal(actual.id, expected.id, "id")
+    assert_equal(actual.title, expected.title, "title")
+    assert_equal(actual.max_score, expected.max_score, "max score")
+    assert_equal(actual.min_score, expected.min_score, "min scrore")
+    assert_equal(actual.description, expected.description, "description")
+    assert_equal(actual.estimated_time, expected.estimated_time, "estimate time")
+
+    assert_files(actual.preview_file, expected.preview_file)
+    assert_user(actual.created_by_user, expected.created_by_user)
+
+
+def assert_get_courses_response(
+    get_courses_response: GetCoursesResponseSchema,
+    create_course_responses: list[CreateCourseResponseSchema],
+):
+    """
+    Проверяет, что список курсов из ответа соответствует созданным курсам.
+
+    :param get_courses_response: Ответ API при запросе списка курсов.
+    :param create_course_responses: Список ответов API при создании курсов.
+    """
+    # Сравниваем каждый курс по отдельности
+    for index, expected_response in enumerate(create_course_responses):
+        actual_course = get_courses_response.courses[index]
+        expected_course = expected_response.course
+        asset_course(actual_course, expected_course)

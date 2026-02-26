@@ -72,23 +72,24 @@ class UpdateCourseRequestSchema(BaseModel):
     max_score: int | None = Field(alias="maxScore", default=None)
     min_score: int | None = Field(alias="minScore", default=None)
     description: str | None = None
-    estimated_time: str | None = Field(
-        alias="estimatedTime", default=None
-    )
+    estimated_time: str | None = Field(alias="estimatedTime", default=None)
 
 
 class UpdateCourseResponseSchema(BaseModel):
     """
     Описание структуры для ответа обновления круса.
     """
-    course : CourseSchema
+
+    course: CourseSchema
 
 
 class GetIDCoursesResponseSchema(BaseModel):
     """
     Описание структуры ответа на получение курса по ID
     """
+
     course: CourseSchema
+
 
 class GetIDCoursesRequestSchema(BaseModel):
     """
@@ -97,8 +98,9 @@ class GetIDCoursesRequestSchema(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True)
 
-    course_id : str = Field(alias="id")
+    course_id: str = Field(alias="id")
+
 
 class GetCoursesResponseSchema(BaseModel):
 
-     courses: list[CourseSchema]
+    courses: list[CourseSchema]
