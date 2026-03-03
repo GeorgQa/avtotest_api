@@ -19,6 +19,7 @@ from tools.assertions.courses import (
     assert_get_id_course_response,
     assert_update_course_response, assert_create_course_response,
 )
+
 from tools.assertions.sсhema import validate_json_schema
 
 
@@ -34,7 +35,6 @@ class TestCourses:
         response = courses_client.update_course_api(
             request=request, course_id=function_course.response.course.id
         )
-        # Преобразуем ответ в объект UpdateCourseResponseSchema, а не UpdateCourseRequestSchema
         response_data = UpdateCourseResponseSchema.model_validate_json(response.text)
 
         # Проверки
@@ -91,4 +91,3 @@ class TestCourses:
 
         #Проверяем соответствие ответа JSON схеме
         validate_json_schema(response.json(), response_data.model_json_schema())
-        
