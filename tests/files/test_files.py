@@ -10,7 +10,7 @@ from httpx_create_file import response_create_file
 from tools.assertions.base import assert_status_code
 from tools.assertions.files import assert_create_file_response, assert_file_is_accessible, assert_get_file_response, \
     assert_create_file_with_empty_filename_response, assert_create_file_with_empty_directory_response, \
-    assert_file_not_found_response
+    assert_file_not_found_response, assert_get_file_with_incorrect_file_id_response
 from tools.assertions.sсhema import validate_json_schema
 
 
@@ -76,3 +76,20 @@ class TestFiles:
         assert_file_not_found_response(get_response_data)
 
         validate_json_schema(get_response.json(), get_response_data.model_json_schema())
+
+    def test_get_file_with_incorrect_file_id(self, files_client: FilesClient):
+        """
+        Тест проверяет обработку некорректного file_id при запросе файла.
+
+        Проверяет, что API возвращает статус 422 и корректное сообщение валидационной ошибки,
+        когда передается некорректный идентификатор файла (не UUID).
+        """
+        file_id = "incorrect-file-id"
+        response = files_client.get_file_api(file_id=file_id)
+        assert_status_code(response.status_code, HTTPStatus.UNPROCESSABLE_ENTITY)
+
+        response_data = ValidationErrorResponseSchema.model_validate_json(response.text)
+
+        assert_get_file_with_incorrect_file_id_response(response_data)
+
+        validate_json_schema(response.json(), response_data.model_json_schema())
