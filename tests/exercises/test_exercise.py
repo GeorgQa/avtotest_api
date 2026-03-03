@@ -6,7 +6,7 @@ from clients.exercises.exercises_client import ExercisesClient
 from clients.exercises.exercises_schema import (
     CreateExerciseRequestSchema,
     CreateExerciseResponseSchema,
-    GetExerciseResponseSchema, UpdateExerciseRequestSchema, UpdateExerciseResponseSchema,
+    GetExerciseResponseSchema, UpdateExerciseRequestSchema, UpdateExerciseResponseSchema, InternalErrorResponseSchema,
 )
 from fixtures.courses import CoursesFixture
 from fixtures.exercises import ExercisesFixture
@@ -14,7 +14,7 @@ from tools.assertions.base import assert_status_code
 from tools.assertions.exercises import (
     assert_create_exercise_response,
     assert_exercise,
-    assert_get_exercise_response, assert_update_exercise_response,
+    assert_get_exercise_response, assert_update_exercise_response, assert_exercise_not_found_response,
 )
 from tools.assertions.sсhema import validate_json_schema
 
@@ -59,7 +59,20 @@ class TestExercises:
         response_update= exercises_client.update_exercises_api(request=request_update,exercise_id=exercises_id)
         response_update_data = UpdateExerciseResponseSchema.model_validate_json(response_update.text)
 
+        #Проверки
         assert_status_code(response_update.status_code, HTTPStatus.OK)
         assert_update_exercise_response(response_update_data, request_update)
         validate_json_schema(response_update.json(), response_update_data.model_json_schema())
 
+    def test_delete_exercise(self, exercises_client:ExercisesClient, function_exercise:ExercisesFixture):
+        exercises_id = function_exercise.response.exercise.id
+        response_delete = exercises_client.delete_exercises_api(exercise_id=exercises_id)
+
+        assert_status_code(response_delete.status_code, HTTPStatus.OK)
+
+        response_check_deleted = exercises_client.get_exercise_api(exercise_id=exercises_id)
+        response_check_deleted_data = InternalErrorResponseSchema.model_validate_json(response_check_deleted.text)
+
+        assert_status_code(response_check_deleted.status_code, HTTPStatus.NOT_FOUND)
+        assert_exercise_not_found_response(response_check_deleted_data, "Exercise not found")
+        validate_json_schema(response_check_deleted.json(), response_check_deleted_data.model_json_schema())

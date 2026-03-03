@@ -2,7 +2,7 @@ from clients.exercises.exercises_schema import (
     CreateExerciseRequestSchema,
     CreateExerciseResponseSchema,
     ExerciseSchema,
-    GetExerciseResponseSchema, UpdateExerciseResponseSchema, UpdateExerciseRequestSchema,
+    GetExerciseResponseSchema, UpdateExerciseResponseSchema, UpdateExerciseRequestSchema, InternalErrorResponseSchema,
 )
 from tools.assertions.base import assert_equal
 
@@ -76,11 +76,11 @@ def assert_get_exercise_response(
 
 def assert_update_exercise_response(actual:UpdateExerciseResponseSchema, expected:UpdateExerciseRequestSchema):
     """
-    Проверяет, что ответ обновления данных о задание соотвествуте обновляемому объекту
+    Проверяет, что ответ обновления данных о задание соотвествутет обновляемому объекту
 
 
-    :param actual:
-    :param expected:
+    :param actual: Ответ Api на обновление задания
+    :param expected: Запрос на обновления объекта
     :return:
     """
     assert_equal(actual.exercise.title, expected.title, "title")
@@ -91,5 +91,11 @@ def assert_update_exercise_response(actual:UpdateExerciseResponseSchema, expecte
     assert_equal(actual.exercise.estimated_time, expected.estimated_time, "estimated time")
     assert_equal(actual.exercise.description, expected.description, "description")
 
+def assert_exercise_not_found_response(actual:InternalErrorResponseSchema, expected_title: str):
+    """
+    Проверка того , что вернулся ответ с ошибкой
 
-    
+    :param actual: API ответ от сервера
+    :return: AssertionError: Если хотя бы одно поле не совпадает.
+    """
+    assert_equal(actual.detail, expected_title, "error message")
