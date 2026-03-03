@@ -2,11 +2,13 @@ from clients.exercises.exercises_schema import (
     CreateExerciseRequestSchema,
     CreateExerciseResponseSchema,
     ExerciseSchema,
-    GetExerciseResponseSchema, UpdateExerciseResponseSchema, UpdateExerciseRequestSchema, InternalErrorResponseSchema,
+    GetExerciseResponseSchema, UpdateExerciseResponseSchema, UpdateExerciseRequestSchema,
     GetExercisesResponseSchema,
 )
+from clients.error_schema import InternalErrorResponseSchema
 from tools.assertions.base import assert_equal
 from tools.assertions.courses import asset_course
+from tools.assertions.errors import assert_internal_error_response
 
 
 def assert_create_exercise_response(
@@ -115,3 +117,14 @@ def assert_get_exercises_response(actual: GetExercisesResponseSchema, expected: 
         actual_exercises = actual.exercises[index]
         expected_exercises = expected_response.exercise
         assert_exercise(actual_exercises, expected_exercises)
+
+def assert_exercises_not_found_response(actual: InternalErrorResponseSchema):
+    """
+    Функция для проверки ошибки, если упражений нет
+
+    :param actual: Фактический ответ.
+    :raises AssertionError: Если фактический ответ не соответствует ошибке "Exercise not found"
+    """
+    # Ожидаемое сообщение об ошибке, если файл не найден
+    expected = InternalErrorResponseSchema(details="Exercise not found")
+    assert_internal_error_response(actual, expected)

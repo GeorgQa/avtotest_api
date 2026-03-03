@@ -10,10 +10,10 @@ create_user_payload = {
     "middleName": faker_data.fake_ru.middle_name(),
 }
 
-print(create_user_payload["email"])
-print(create_user_payload["lastName"])
-print(create_user_payload["firstName"])
-print(create_user_payload["middleName"])
+# print(create_user_payload["email"])
+# print(create_user_payload["lastName"])
+# print(create_user_payload["firstName"])
+# print(create_user_payload["middleName"])
 
 
 create_user_response = httpx.post(
@@ -21,7 +21,7 @@ create_user_response = httpx.post(
 )
 create_user_response_data = create_user_response.json()
 
-print("Create_user", create_user_response_data)
+# print("Create_user", create_user_response_data)
 
 
 login_payload = {
@@ -35,7 +35,7 @@ login_response = httpx.post(
 )
 response_login_data = login_response.json()
 
-print("Login_data", response_login_data)
+# print("Login_data", response_login_data)
 
 
 create_file_headers = {
@@ -45,10 +45,10 @@ create_file_headers = {
 response_create_file = httpx.post(
     "http://localhost:8000/api/v1/files",
     data={"filename": "test.png", "directory": "directoria"},
-    files={"upload_file": open("./testdata/files/file_2.png", "rb")},
+    files={"upload_file": open("C:/courses/autotest-api/testdata/files/file_2.png", "rb")},
     headers=create_file_headers,
 )
 response_create_file_data = response_create_file.json()
-print("Create file data:", response_create_file_data)
-print(response_create_file.status_code)
-print(response_create_file.headers)
+# print("Create file data:", response_create_file_data)
+# print(response_create_file.status_code)
+# print(response_create_file.headers)

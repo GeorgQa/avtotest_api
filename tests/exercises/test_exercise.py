@@ -2,21 +2,23 @@ from http import HTTPStatus
 
 import pytest
 
+from clients.error_schema import InternalErrorResponseSchema
 from clients.exercises.exercises_client import ExercisesClient
 from clients.exercises.exercises_schema import (
     CreateExerciseRequestSchema,
     CreateExerciseResponseSchema,
-    GetExerciseResponseSchema, UpdateExerciseRequestSchema, UpdateExerciseResponseSchema, InternalErrorResponseSchema,
+    GetExerciseResponseSchema, UpdateExerciseRequestSchema, UpdateExerciseResponseSchema,
     GetExercisesQuerySchema, GetExercisesResponseSchema,
 )
 from fixtures.courses import CoursesFixture
 from fixtures.exercises import ExercisesFixture
 from tools.assertions.base import assert_status_code
+from tools.assertions.errors import assert_internal_error_response
 from tools.assertions.exercises import (
     assert_create_exercise_response,
     assert_exercise,
     assert_get_exercise_response, assert_update_exercise_response, assert_exercise_not_found_response,
-    assert_get_exercises_response,
+    assert_get_exercises_response, assert_exercises_not_found_response,
 )
 from tools.assertions.sсhema import validate_json_schema
 
@@ -76,7 +78,7 @@ class TestExercises:
         response_check_deleted_data = InternalErrorResponseSchema.model_validate_json(response_check_deleted.text)
 
         assert_status_code(response_check_deleted.status_code, HTTPStatus.NOT_FOUND)
-        assert_exercise_not_found_response(response_check_deleted_data, "Exercise not found")
+        assert_exercises_not_found_response(response_check_deleted_data)
         validate_json_schema(response_check_deleted.json(), response_check_deleted_data.model_json_schema())
 
     def test_get_exercises(self, exercises_client:ExercisesClient, function_exercise:ExercisesFixture, function_course: CoursesFixture):

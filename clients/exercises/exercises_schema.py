@@ -100,8 +100,4 @@ class UpdateExerciseResponseSchema(BaseModel):
     exercise: ExerciseSchema
 
 
-class InternalErrorResponseSchema(BaseModel):
-    """
-    Описание модели ответа от сервера на ошибку
-    """
-    detail: str
+
