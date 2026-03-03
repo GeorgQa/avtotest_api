@@ -1,11 +1,12 @@
 from api_client_create_course import create_course_response
 from clients.courses.course_schema import (
     CourseSchema,
+    CreateCourseRequestSchema,
     CreateCourseResponseSchema,
     GetCoursesResponseSchema,
     GetIDCoursesResponseSchema,
     UpdateCourseRequestSchema,
-    UpdateCourseResponseSchema, CreateCourseRequestSchema,
+    UpdateCourseResponseSchema,
 )
 from fixtures.courses import CoursesFixture
 from tools.assertions.base import assert_equal
@@ -60,9 +61,7 @@ def assert_get_id_course_response(
     )
 
 
-def asset_course(
-    actual: CourseSchema, expected: CourseSchema
-):
+def asset_course(actual: CourseSchema, expected: CourseSchema):
     """
     Проверяет , что фактиечские данные курса соответствуют ожидаемым.
 
@@ -97,7 +96,10 @@ def assert_get_courses_response(
         expected_course = expected_response.course
         asset_course(actual_course, expected_course)
 
-def assert_create_course_response(actual: CreateCourseResponseSchema, expected: CreateCourseRequestSchema):
+
+def assert_create_course_response(
+    actual: CreateCourseResponseSchema, expected: CreateCourseRequestSchema
+):
     """
     Проверяет что данные тела запроса соответсвуют данным ответа
 
@@ -111,5 +113,9 @@ def assert_create_course_response(actual: CreateCourseResponseSchema, expected: 
     assert_equal(actual.course.description, expected.description, "description")
     assert_equal(actual.course.estimated_time, expected.estimated_time, "estimate time")
 
-    assert_equal(actual.course.preview_file.id, expected.preview_file_id, "preview_file_id")
-    assert_equal(actual.course.created_by_user.id, expected.created_by_user_id, "user_id")
+    assert_equal(
+        actual.course.preview_file.id, expected.preview_file_id, "preview_file_id"
+    )
+    assert_equal(
+        actual.course.created_by_user.id, expected.created_by_user_id, "user_id"
+    )
