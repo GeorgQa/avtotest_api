@@ -3,8 +3,10 @@ from clients.exercises.exercises_schema import (
     CreateExerciseResponseSchema,
     ExerciseSchema,
     GetExerciseResponseSchema, UpdateExerciseResponseSchema, UpdateExerciseRequestSchema, InternalErrorResponseSchema,
+    GetExercisesResponseSchema,
 )
 from tools.assertions.base import assert_equal
+from tools.assertions.courses import asset_course
 
 
 def assert_create_exercise_response(
@@ -99,3 +101,17 @@ def assert_exercise_not_found_response(actual:InternalErrorResponseSchema, expec
     :return: AssertionError: Если хотя бы одно поле не совпадает.
     """
     assert_equal(actual.detail, expected_title, "error message")
+
+def assert_get_exercises_response(actual: GetExercisesResponseSchema, expected: list[CreateExerciseResponseSchema]):
+    """
+    Проверяет, что ответ на получение списка заданий содержит все созданные задания.
+
+    :param actual: Ответ API на получение списка заданий
+    :param expected: Список ответов на создание заданий
+    :raises AssertionError: Если хотя бы одно поле не совпадает.
+    """
+    # Сравниваем каждое задание по отдельности
+    for index, expected_response in enumerate(expected):
+        actual_exercises = actual.exercises[index]
+        expected_exercises = expected_response.exercise
+        assert_exercise(actual_exercises, expected_exercises)

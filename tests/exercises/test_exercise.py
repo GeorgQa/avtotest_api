@@ -7,6 +7,7 @@ from clients.exercises.exercises_schema import (
     CreateExerciseRequestSchema,
     CreateExerciseResponseSchema,
     GetExerciseResponseSchema, UpdateExerciseRequestSchema, UpdateExerciseResponseSchema, InternalErrorResponseSchema,
+    GetExercisesQuerySchema, GetExercisesResponseSchema,
 )
 from fixtures.courses import CoursesFixture
 from fixtures.exercises import ExercisesFixture
@@ -15,6 +16,7 @@ from tools.assertions.exercises import (
     assert_create_exercise_response,
     assert_exercise,
     assert_get_exercise_response, assert_update_exercise_response, assert_exercise_not_found_response,
+    assert_get_exercises_response,
 )
 from tools.assertions.sсhema import validate_json_schema
 
@@ -76,3 +78,12 @@ class TestExercises:
         assert_status_code(response_check_deleted.status_code, HTTPStatus.NOT_FOUND)
         assert_exercise_not_found_response(response_check_deleted_data, "Exercise not found")
         validate_json_schema(response_check_deleted.json(), response_check_deleted_data.model_json_schema())
+
+    def test_get_exercises(self, exercises_client:ExercisesClient, function_exercise:ExercisesFixture, function_course: CoursesFixture):
+        query_params = GetExercisesQuerySchema(course_id=function_course.response.course.id)
+        get_response_exercises = exercises_client.get_exercises_api(query=query_params)
+        get_response_exercises_data = GetExercisesResponseSchema.model_validate_json(get_response_exercises.text)
+
+        assert_status_code(get_response_exercises.status_code, HTTPStatus.OK)
+        assert_get_exercises_response(get_response_exercises_data, [function_exercise.response])
+        validate_json_schema(get_response_exercises.json(), get_response_exercises_data.model_json_schema())
