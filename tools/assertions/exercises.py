@@ -2,7 +2,7 @@ from clients.exercises.exercises_schema import (
     CreateExerciseRequestSchema,
     CreateExerciseResponseSchema,
     ExerciseSchema,
-    GetExerciseResponseSchema,
+    GetExerciseResponseSchema, UpdateExerciseResponseSchema, UpdateExerciseRequestSchema,
 )
 from tools.assertions.base import assert_equal
 
@@ -49,13 +49,13 @@ def assert_exercise(actual: ExerciseSchema, expected: ExerciseSchema):
 
 
 def assert_get_exercise_response(
-    actual: GetExerciseResponseSchema, expected: GetExerciseResponseSchema
+    actual: GetExerciseResponseSchema, expected: CreateExerciseResponseSchema
 ):
     """
-    Проверяет, что ответ на получение упражнения соответствует ожидаемому.
+    Проверяет, что ответ на получение упражнения соответствует данным создания.
 
     :param actual: Ответ API при получении упражнения
-    :param expected: Ожидаемый ответ на получение упражнения
+    :param expected: Ответ API при создании упражнения
     :raises AssertionError: Если хотя бы одно поле не совпадает.
     """
     assert_equal(actual.exercise.id, expected.exercise.id, "exercise id")
@@ -73,3 +73,23 @@ def assert_get_exercise_response(
         expected.exercise.estimated_time,
         "estimate time",
     )
+
+def assert_update_exercise_response(actual:UpdateExerciseResponseSchema, expected:UpdateExerciseRequestSchema):
+    """
+    Проверяет, что ответ обновления данных о задание соотвествуте обновляемому объекту
+
+
+    :param actual:
+    :param expected:
+    :return:
+    """
+    assert_equal(actual.exercise.title, expected.title, "title")
+    assert_equal(actual.exercise.description, expected.description, "description")
+    assert_equal(actual.exercise.max_score, expected.max_score, "max score")
+    assert_equal(actual.exercise.min_score, expected.min_score, "min score")
+    assert_equal(actual.exercise.order_index, expected.order_index, "order index")
+    assert_equal(actual.exercise.estimated_time, expected.estimated_time, "estimated time")
+    assert_equal(actual.exercise.description, expected.description, "description")
+
+
+    
