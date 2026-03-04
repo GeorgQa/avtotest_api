@@ -23,12 +23,15 @@ from tools.assertions.sсhema import validate_json_schema
 @pytest.mark.authentication
 @pytest.mark.regression
 @allure.epic(AllureEpic.LMS)
+@allure.parent_suite(AllureEpic.LMS)
 @allure.feature(AllureFeature.AUTHENTICATION)
+@allure.suite(AllureFeature.AUTHENTICATION)
 @allure.tag(AllureTag.REGRESSION, AllureTag.AUTHENTICATION)
 class TestAuthentication:
     @allure.story(AllureStory.LOGIN)
-    @allure.title("Login with correct email and password")
+    @allure.title("Correct login")
     @allure.severity(Severity.BLOCKER)
+    @allure.sub_suite(AllureStory.LOGIN)
     def test_login(
         self,
         public_users_client: PublicUsersClient,
