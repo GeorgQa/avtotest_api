@@ -2,6 +2,7 @@ from http import HTTPStatus
 
 import pytest
 import allure
+from allure_commons.types import Severity
 
 from clients.authentication.authentication_client import AuthenticationClient
 from clients.private_http_builder import AuthenticationUserSchema
@@ -16,6 +17,9 @@ from clients.users.user_schema import (
     GetUserResponseSchema,
 )
 from fixtures.users import UserFixture
+from tools.allure.epics import AllureEpic
+from tools.allure.features import AllureFeature
+from tools.allure.stories import AllureStory
 from tools.allure.tags import AllureTag
 from tools.assertions.base import assert_equal, assert_status_code
 from tools.assertions.sсhema import validate_json_schema
@@ -26,10 +30,15 @@ from tools.faker_data import fake
 @pytest.mark.users
 @pytest.mark.regression
 @allure.tag(AllureTag.USERS, AllureTag.REGRESSION)
+@allure.epic(AllureEpic.LMS)
+@allure.suite(A)
+@allure.feature(AllureFeature.USERS)
 class TestUsers:
     @pytest.mark.parametrize("email", ["mail.ru", "gmail.com", "example.com"])
     @allure.tag("CREATE_ENTITY")
     @allure.title(AllureTag.CREATE_ENTITY)
+    @allure.story(AllureStory.CREATE_ENTITY)
+    @allure.severity(Severity.BLOCKER)
     def test_create_user(self, email: str, public_users_client: PublicUsersClient):
         """
         Тест создания нового юзера с разными параметрами доменов
@@ -49,6 +58,8 @@ class TestUsers:
 
     @allure.tag(AllureTag.GET_ENTITY)
     @allure.title("Create and check user")
+    @allure.story(AllureStory.CREATE_ENTITY)
+    @allure.severity(Severity.BLOCKER)
     def test_create_user_and_get_it(
         self,
         public_users_client: PublicUsersClient,
@@ -102,7 +113,10 @@ class TestUsers:
             "middle name",
         )
 
+    @allure.tag(AllureTag.GET_ENTITY)
     @allure.title("Get user me")
+    @allure.story(AllureStory.GET_ENTITY)
+    @allure.severity(Severity.CRITICAL)
     def test_get_user_me(
         self, private_users_client: PrivateUsersClient, function_user: UserFixture
     ):

@@ -1,7 +1,7 @@
 from  enum import Enum
 
 
-class AllureTag(str,Enum):
+class AllureTag(str, Enum):  # noqa: F821
     USERS = "USERS"
     FILES = "FILES"
     COURSES = "COURSES"
