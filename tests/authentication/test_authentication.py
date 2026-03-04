@@ -1,5 +1,6 @@
 from http import HTTPStatus
 
+import allure
 import pytest
 
 from clients.authentication.authentication_client import AuthenticationClient
@@ -9,6 +10,7 @@ from clients.authentication.authentication_schema import (
 )
 from clients.users.public_users_client import PublicUsersClient
 from fixtures.users import UserFixture
+from tools.allure.tags import AllureTag
 from tools.assertions.authentication import assert_login_response
 from tools.assertions.base import assert_status_code
 from tools.assertions.sсhema import validate_json_schema
@@ -16,7 +18,9 @@ from tools.assertions.sсhema import validate_json_schema
 
 @pytest.mark.authentication
 @pytest.mark.regression
+@allure.tag(AllureTag.REGRESSION, AllureTag.AUTHENTICATION)
 class TestAuthentication:
+    @allure.title("Login with correct email and password")
     def test_login(
         self,
         public_users_client: PublicUsersClient,
