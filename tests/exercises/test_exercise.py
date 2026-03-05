@@ -97,12 +97,12 @@ class TestExercises:
     @allure.story(AllureStory.DELETE_ENTITY)
     @allure.sub_suite(AllureStory.DELETE_ENTITY)
     def test_delete_exercise(self, exercises_client:ExercisesClient, function_exercise:ExercisesFixture):
-        exercises_id = function_exercise.response.exercise.id
-        response_delete = exercises_client.delete_exercises_api(exercise_id=exercises_id)
+        exercise_id = function_exercise.response.exercise.id
+        response_delete = exercises_client.delete_exercises_api(exercise_id=exercise_id)
 
         assert_status_code(response_delete.status_code, HTTPStatus.OK)
 
-        response_check_deleted = exercises_client.get_exercise_api(exercise_id=exercises_id)
+        response_check_deleted = exercises_client.get_exercise_api(exercise_id=exercise_id)
         response_check_deleted_data = InternalErrorResponseSchema.model_validate_json(response_check_deleted.text)
 
         assert_status_code(response_check_deleted.status_code, HTTPStatus.NOT_FOUND)

@@ -1,3 +1,5 @@
+import allure
+
 from api_client_create_course import create_course_response
 from clients.courses.course_schema import (
     CourseSchema,
@@ -13,7 +15,7 @@ from tools.assertions.base import assert_equal
 from tools.assertions.files import assert_files
 from tools.assertions.users import assert_user
 
-
+@allure.step("Check update course response. ")
 def assert_update_course_response(
     request: UpdateCourseRequestSchema, response: UpdateCourseResponseSchema
 ):
@@ -41,7 +43,7 @@ def assert_update_course_response(
             response.course.estimated_time, request.estimated_time, "estimated_time"
         )
 
-
+@allure.step("Check get course by id response. ")
 def assert_get_id_course_response(
     request: UpdateCourseResponseSchema, response: GetIDCoursesResponseSchema
 ):
@@ -60,7 +62,7 @@ def assert_get_id_course_response(
         response.course.estimated_time, request.course.estimated_time, "min_score"
     )
 
-
+@allure.step("Check course")
 def asset_course(actual: CourseSchema, expected: CourseSchema):
     """
     Проверяет , что фактиечские данные курса соответствуют ожидаемым.
@@ -79,7 +81,7 @@ def asset_course(actual: CourseSchema, expected: CourseSchema):
     assert_files(actual.preview_file, expected.preview_file)
     assert_user(actual.created_by_user, expected.created_by_user)
 
-
+@allure.step("Check get courses response")
 def assert_get_courses_response(
     get_courses_response: GetCoursesResponseSchema,
     create_course_responses: list[CreateCourseResponseSchema],
@@ -97,6 +99,7 @@ def assert_get_courses_response(
         asset_course(actual_course, expected_course)
 
 
+@allure.step("Check create curses response")
 def assert_create_course_response(
     actual: CreateCourseResponseSchema, expected: CreateCourseRequestSchema
 ):
