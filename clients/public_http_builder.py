@@ -1,5 +1,7 @@
 from httpx import Client
 
+from clients.event_hooks import curl_event_hook
+
 
 def get_public_http_client() -> Client:
     """
