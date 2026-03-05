@@ -1,5 +1,6 @@
 import json
 
+import allure
 from httpx import Response
 
 from clients.api_client import APIClient
@@ -22,6 +23,7 @@ class ExercisesClient(APIClient):
     Клиент для работы с api /api/v1/exercises.
     """
 
+    @allure.step("Get exercises")
     def get_exercises_api(self, query: GetExercisesQuerySchema) -> Response:
         """
         Метод получения списка заданий.
@@ -31,6 +33,7 @@ class ExercisesClient(APIClient):
         """
         return self.get("/api/v1/exercises", params=query.model_dump(by_alias=True))
 
+    @allure.step("Create exercise")
     def create_exercise_api(self, request: CreateExerciseRequestSchema) -> Response:
         """
         Метод для создания задания
@@ -40,6 +43,7 @@ class ExercisesClient(APIClient):
         """
         return self.post("/api/v1/exercises", json=request.model_dump(by_alias=True))
 
+    @allure.step("Get exercise by id {exercise_id}")
     def get_exercise_api(self, exercise_id: str) -> Response:
         """
         Метод получения задания.
@@ -49,6 +53,7 @@ class ExercisesClient(APIClient):
         """
         return self.get(f"/api/v1/exercises/{exercise_id}")
 
+    @allure.step("Update exercise")
     def update_exercises_api(
         self, exercise_id: str, request: UpdateExerciseRequestSchema
     ) -> Response:
@@ -63,6 +68,7 @@ class ExercisesClient(APIClient):
             f"/api/v1/exercises/{exercise_id}", json=request.model_dump(by_alias=True)
         )
 
+    @allure.step("Delete exercise")
     def delete_exercises_api(self, exercise_id: str) -> Response:
         """
         Метод для удаления упражнения
@@ -79,14 +85,14 @@ class ExercisesClient(APIClient):
         return CreateExerciseResponseSchema.model_validate_json(response.text)
 
     def get_exercise(self, exercise_id: str) -> GetExerciseResponseSchema:
-        response = self.create_exercise_api(exercise_id)
+        response = self.get_exercise_api(exercise_id)
         return GetExerciseResponseSchema.model_validate_json(response.text)
 
     def get_exercises(
         self, query: GetExercisesQuerySchema
     ) -> GetExerciseResponseSchema:
-        response = self.create_exercise_api(query)
-        return GetExerciseResponseSchema.exercises_validate_json(response.text)
+        response = self.get_exercises_api(query)
+        return GetExerciseResponseSchema.model_validate_json(response.text)
 
     def update_exercise(
         self, request_id: UpdateExerciseRequestSchema, exercise_id: str
