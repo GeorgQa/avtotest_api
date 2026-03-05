@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 from clients.files.file_schema import CreateFileRequestSchema, CreateFileResponseSchema
 from clients.files.files_client import FilesClient, get_files_client
+from config import settings
 from fixtures.users import UserFixture
 
 
@@ -29,8 +30,6 @@ def function_file(files_client: FilesClient) -> FileFixture:
     :param files_client: Авторизованный клиент для работы с файлами.
     :return: Объект FileFixture с request и response
     """
-    file_path = Path(__file__).parent.parent / "testdata" / "files" / "image.jpg"
-
-    request = CreateFileRequestSchema(upload_file=str(file_path))
+    request = CreateFileRequestSchema(upload_file=settings.test_data.image_png_file)
     response = files_client.create_file(request=request)
     return FileFixture(request=request, response=response)

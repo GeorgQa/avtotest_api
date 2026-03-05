@@ -18,7 +18,7 @@ class TestData(BaseModel):
 
 class Settings(BaseSettings):
 
-    test_data: TestDataConfig = TestDataConfig()
+    test_data: TestDataConfig
     http_client: HTTPClientConfig
 
     model_config = SettingsConfigDict(

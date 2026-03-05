@@ -18,6 +18,7 @@ from tools.assertions.files import assert_create_file_response, assert_file_is_a
     assert_create_file_with_empty_filename_response, assert_create_file_with_empty_directory_response, \
     assert_file_not_found_response, assert_get_file_with_incorrect_file_id_response
 from tools.assertions.sсhema import validate_json_schema
+from config import settings
 
 
 @pytest.mark.regression
@@ -34,9 +35,9 @@ class TestFiles:
     @allure.story(AllureStory.CREATE_ENTITY)
     @allure.sub_suite(AllureStory.CREATE_ENTITY)
     def test_create_file(self, files_client:FilesClient):
-        request = CreateFileRequestSchema(upload_file="C:/courses/autotest-api/testdata/files/image.png")
+        request = CreateFileRequestSchema(upload_file=f"{settings.test_data.image_png_file}")
         response = files_client.create_file_api(request)
-        expected_url = f"http://localhost:8000/static/{request.directory}/{request.filename}"
+        expected_url = f"{settings.http_client.client_url}/static/{request.directory}/{request.filename}"
         response_data = CreateFileResponseSchema.model_validate_json(response.text)
 
         assert_status_code(response.status_code, HTTPStatus.OK)
@@ -65,7 +66,7 @@ class TestFiles:
     @allure.severity(Severity.NORMAL)
     @allure.sub_suite(AllureStory.VALIDATE_ENTITY)
     def test_create_file_with_empty_filename(self, files_client:FilesClient):
-         request_create_file = CreateFileRequestSchema(filename="", upload_file="C:/courses/autotest-api/testdata/files/image.png")
+         request_create_file = CreateFileRequestSchema(filename="", upload_file=f"{settings.test_data.image_png_file}")
          response_create_file= files_client.create_file_api(request=request_create_file)
          response_create_file_data = ValidationErrorResponseSchema.model_validate_json(response_create_file.text)
 
@@ -83,7 +84,7 @@ class TestFiles:
     @allure.severity(Severity.NORMAL)
     @allure.sub_suite(AllureStory.VALIDATE_ENTITY)
     def test_create_file_with_empty_directory(self, files_client:FilesClient):
-         request_create_file = CreateFileRequestSchema(directory="", upload_file="C:/courses/autotest-api/testdata/files/image.png")
+         request_create_file = CreateFileRequestSchema(directory="", upload_file=f"{settings.test_data.image_png_file}")
          response_create_file= files_client.create_file_api(request=request_create_file)
          response_create_file_data = ValidationErrorResponseSchema.model_validate_json(response_create_file.text)
 

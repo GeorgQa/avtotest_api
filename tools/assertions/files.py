@@ -4,6 +4,7 @@ import httpx
 from clients.error_schema import ValidationErrorResponseSchema, ValidationErrorSchema, InternalErrorResponseSchema
 from clients.files.file_schema import FileSchema, CreateFileRequestSchema, CreateFileResponseSchema, \
     GetFileResponseSchema
+from config import settings
 from tools.assertions.base import assert_equal
 from tools.assertions.errors import assert_validation_error_response, assert_internal_error_response
 
@@ -31,7 +32,7 @@ def assert_create_file_response(request:CreateFileRequestSchema,response:CreateF
     :raise: Asserton Error: Если хотя бы одно поле не совпадает
     """
     #Формируем ожидаемую ссылка на файл
-    expected_url = str(response.file.url)
+    expected_url = f"{settings.http_client.client_url}/static/{request.directory}/{request.filename}"
 
     assert_equal(str(response.file.url), expected_url, "url")
     assert_equal(response.file.filename, request.filename, "filename")
