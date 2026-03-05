@@ -5,6 +5,7 @@ from clients.files.files_client import get_files_client
 from clients.private_http_builder import AuthenticationUserSchema
 from clients.users.public_users_client import get_public_users_client
 from clients.users.user_schema import CreateUserRequestSchema
+from config import settings
 from tools import faker_data
 
 public_users_client = get_public_users_client()
@@ -27,13 +28,8 @@ authentication_user = AuthenticationUserSchema(
 files_client = get_files_client(authentication_user)
 courses_client = get_courses_client(authentication_user)
 
-import os
-
-# Абсолютный путь к файлу
-file_path = os.path.join("C:/courses/autotest-api", "testdata", "files", "image.jpg")
-
 create_file_request = CreateFileRequestSchema(
-    filename="image.png", directory="courses", upload_file=file_path
+    filename="image.png", directory="courses", upload_file=settings.test_data.image_png_file
 )
 create_file_response = files_client.create_file(create_file_request)
 # print("Create File Data", create_file_response)
