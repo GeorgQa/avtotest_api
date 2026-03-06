@@ -14,6 +14,10 @@ from fixtures.courses import CoursesFixture
 from tools.assertions.base import assert_equal
 from tools.assertions.files import assert_files
 from tools.assertions.users import assert_user
+from tools.loger import get_logger
+
+logger = get_logger("COURSE_ASSERTIONS")
+
 
 @allure.step("Check update course response. ")
 def assert_update_course_response(
@@ -26,6 +30,7 @@ def assert_update_course_response(
     :param response: Ответ API с обноленными данными курса
     :raise AssertionError: Если хоть одно поле не совпало
     """
+    logger.info("Check update course response")
     if request.title is not None:
         assert_equal(response.course.title, request.title, "title")
 
@@ -54,6 +59,7 @@ def assert_get_id_course_response(
     :param response: Ответ запроса на получение данных по ID
     :return: Если хоть одно поле не совпало
     """
+    logger.info("Check get id course response")
     assert_equal(response.course.title, request.course.title, "title")
     assert_equal(response.course.max_score, request.course.max_score, "max_score")
     assert_equal(response.course.min_score, request.course.min_score, "min_score")
@@ -71,6 +77,7 @@ def asset_course(actual: CourseSchema, expected: CourseSchema):
     :param expectted: Значения которые должны быть в результате выполнения тестов
     :raise AsserionError: Если хоть одно поле не совпалo
     """
+    logger.info("Check course.")
     assert_equal(actual.id, expected.id, "id")
     assert_equal(actual.title, expected.title, "title")
     assert_equal(actual.max_score, expected.max_score, "max score")
@@ -92,7 +99,7 @@ def assert_get_courses_response(
     :param get_courses_response: Ответ API при запросе списка курсов.
     :param create_course_responses: Список ответов API при создании курсов.
     """
-    # Сравниваем каждый курс по отдельности
+    logger.info("Check get course response")
     for index, expected_response in enumerate(create_course_responses):
         actual_course = get_courses_response.courses[index]
         expected_course = expected_response.course
@@ -110,6 +117,7 @@ def assert_create_course_response(
     :param cretae_curce_resposne:   Ответ API при создание курса
     :raise AsserionError: Если хоть одно поле не совпалo
     """
+    logger.info("Check create course response")
     assert_equal(actual.course.title, expected.title, "title")
     assert_equal(actual.course.max_score, expected.max_score, "max_score")
     assert_equal(actual.course.min_score, expected.min_score, "min_score")
