@@ -6,6 +6,11 @@ env/
 ENV/
 *.png
 
+#Все что внутри аллюра
+allure-results
+*.properties
+
+
 # === Python ===
 __pycache__/
 *.py[cod]
