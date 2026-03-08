@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     allure_results_dir: DirectoryPath
 
     model_config = SettingsConfigDict(
+        extra="allow",
         env_file=".env.local",
         env_file_encoding="utf-8",
         env_nested_delimiter="."
