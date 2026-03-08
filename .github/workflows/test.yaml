@@ -6,21 +6,21 @@ on:
     branches:
       - main
 
-    pull_request:
-      branches:
-        - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   run-tests:
     runs-on : ubuntu-latest
 
     steps:
-      - name: Check out repository code.
-      - uses: actions/checkout@v6
+      - name: Check out repository code
+        uses: actions/checkout@v6
 
       - name: Setup Python
-      - uses: actions/setup-python@v6
-        with :
+        uses: actions/setup-python@v6
+        with:
           python-version: '3.13'
 
       - name: Clone test server repo
@@ -46,7 +46,7 @@ jobs:
 
       - name: Run API tests with pytest and generate Allure results
         run: |
-          pytest -m regression --alluredir=allure_results --numprocesses=2
+          pytest -m regression --alluredir=allure-results --numprocesses=2
 
       - name: Get Allure history
         uses: actions/checkout@v6
@@ -61,14 +61,15 @@ jobs:
         if: always()
         with:
           allure_results: allure-results
-          allure_history: allure-history
+          allure_history: gh-pages/allure-history
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
+        if: always()
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_dir: allure-history
-          push_branch: gh-pages
+          publish_dir: ./allure-report
+          publish_branch: gh-pages
 
 
 
