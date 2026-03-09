@@ -7,9 +7,9 @@ INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost
 INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
 INFO     USERS_ASSERTIONS:users.py:59 Check get user response
 INFO     USERS_ASSERTIONS:users.py:40 Check user
-INFO     BASE_ASSERTIONS:base.py:36 Check that "id" equals to 10c993d9-8577-409a-8610-c017590adde0
-INFO     BASE_ASSERTIONS:base.py:36 Check that "email" equals to pserrano@example.org
-INFO     BASE_ASSERTIONS:base.py:36 Check that "last_name" equals to Jones
-INFO     BASE_ASSERTIONS:base.py:36 Check that "first_name" equals to Sherri
-INFO     BASE_ASSERTIONS:base.py:36 Check that "middle_name" equals to Kevin
+INFO     BASE_ASSERTIONS:base.py:36 Check that "id" equals to 0df91c34-323c-4f6d-81e1-8a3d9ee486f6
+INFO     BASE_ASSERTIONS:base.py:36 Check that "email" equals to fritzdenise@example.net
+INFO     BASE_ASSERTIONS:base.py:36 Check that "last_name" equals to Davis
+INFO     BASE_ASSERTIONS:base.py:36 Check that "first_name" equals to Connor
+INFO     BASE_ASSERTIONS:base.py:36 Check that "middle_name" equals to Nicholas
 INFO     SCHEMA_ASSERTIONS:sсhema.py:19 Validating JSON schema
