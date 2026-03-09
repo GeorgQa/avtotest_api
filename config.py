@@ -37,7 +37,7 @@ class Settings(BaseSettings):
         # Передаем allure_results_dir в инициализацию настроек
         return Settings(
             allure_results_dir=allure_results_dir,
-            test_data=TestDataConfig(image_png_file="./testdata/files/image.jpg"),  # Проверка: файл существует
+            test_data=TestDataConfig(image_png_file="./testdata/files/image.png"),  # Проверка: файл существует
             http_client=HTTPClientConfig(url="http://localhost:8000", timeout=4.0)
         )
 
