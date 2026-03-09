@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Self
 
 from pydantic import HttpUrl, BaseModel, FilePath, DirectoryPath
@@ -32,14 +33,11 @@ class Settings(BaseSettings):
     )
 
     @classmethod
-    def initialize(cls) -> Self:  # Возвращает экземпляр класса Settings
-        allure_results_dir = DirectoryPath("./allure-results")  # Создаем объект пути к папке
-        allure_results_dir.mkdir(exist_ok=True)  # Создаем папку allure-results, если она не существует
-
+    def initialize(cls) -> Self:
         # Создаем экземпляр настроек, который автоматически загрузит значения из .env.local
         settings = cls()
-        # Устанавливаем директорию для allure результатов
-        settings.allure_results_dir = allure_results_dir
+        # Убеждаемся, что директория для allure результатов создана
+        settings.allure_results_dir.mkdir(exist_ok=True)
         return settings
 
 settings = Settings.initialize()
