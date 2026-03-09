@@ -1,21 +1,36 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","26","Delete exercise","LMS service","Mon Mar 09 11:22:14 UTC 2026","passed","Mon Mar 09 11:22:14 UTC 2026","Delete entity","Exercises","",""
+"","25","Create exercise","LMS service","Mon Mar 09 11:22:13 UTC 2026","passed","Mon Mar 09 11:22:13 UTC 2026","Create entity","Exercises","",""
 "
 Тест создания нового юзера с разными параметрами доменов
 :param public_users_client - клиент для создания пользователей
 :param email - параметр домена для генерации почты
-","522","CREATE_ENTITY","LMS service","Mon Mar 09 11:17:51 UTC 2026","passed","Mon Mar 09 11:17:51 UTC 2026","Create entity","Users","",""
-"","26","Update exercise","LMS service","Mon Mar 09 11:17:51 UTC 2026","passed","Mon Mar 09 11:17:51 UTC 2026","Update entity","Exercises","",""
-"","15","Create exercise","LMS service","Mon Mar 09 11:17:50 UTC 2026","passed","Mon Mar 09 11:17:50 UTC 2026","Create entity","Exercises","",""
+","543","CREATE_ENTITY","LMS service","Mon Mar 09 11:22:16 UTC 2026","passed","Mon Mar 09 11:22:16 UTC 2026","Create entity","Users","",""
+"","22","Get exercises","LMS service","Mon Mar 09 11:22:16 UTC 2026","passed","Mon Mar 09 11:22:16 UTC 2026","Get entities","Exercises","",""
+"","29","Get courses","LMS service","Mon Mar 09 11:22:11 UTC 2026","passed","Mon Mar 09 11:22:11 UTC 2026","Get entities","Courses","",""
 "
 Тест создания нового юзера с разными параметрами доменов
 :param public_users_client - клиент для создания пользователей
 :param email - параметр домена для генерации почты
-","511","CREATE_ENTITY","LMS service","Mon Mar 09 11:17:52 UTC 2026","passed","Mon Mar 09 11:17:52 UTC 2026","Create entity","Users","",""
+","550","CREATE_ENTITY","LMS service","Mon Mar 09 11:22:15 UTC 2026","passed","Mon Mar 09 11:22:15 UTC 2026","Create entity","Users","",""
+"","19","Update exercise","LMS service","Mon Mar 09 11:22:15 UTC 2026","passed","Mon Mar 09 11:22:15 UTC 2026","Update entity","Exercises","",""
 "
-Тест создания нового юзера с разными параметрами доменов
-:param public_users_client - клиент для создания пользователей
-:param email - параметр домена для генерации почты
-","515","CREATE_ENTITY","LMS service","Mon Mar 09 11:17:52 UTC 2026","passed","Mon Mar 09 11:17:53 UTC 2026","Create entity","Users","",""
+Тест проверки авторизации и получения данных пользователя.
+
+:param public_users_client: Клиент для взаимодействия с публичным API пользователей.
+:param authentication_client: Клиент для выполнения операций аутентификации.
+:param function_user: Фикстура, возвращающая данные созданного и авторизованного пользователя.
+
+","602","Create and check user","LMS service","Mon Mar 09 11:22:16 UTC 2026","passed","Mon Mar 09 11:22:17 UTC 2026","Create entity","Users","",""
+"","38","Create course","LMS service","Mon Mar 09 11:22:12 UTC 2026","passed","Mon Mar 09 11:22:12 UTC 2026","Create entity","Courses","",""
+"
+Тест успешной авторизации пользователя в системе.
+ Описание шагов:
+1. Создаётся новый пользователь.
+2. Выполняется запрос на авторизацию.
+3. Проверяется статус-код ответа.
+4. Проверяется структура и содержание токена в ответе.
+","555","Correct login","LMS service","Mon Mar 09 11:22:10 UTC 2026","passed","Mon Mar 09 11:22:11 UTC 2026","Login","Authentication","",""
 "
 Тест на получение данных авторизованного пользователя через /api/v1/users/me.
 
@@ -24,26 +39,11 @@
 
 :param private_users_client: Авторизованный клиент для доступа к приватным эндпоинтам.
 :param function_user: Фикстура с данными созданного пользователя.
-","15","Get user me","LMS service","Mon Mar 09 11:17:54 UTC 2026","passed","Mon Mar 09 11:17:54 UTC 2026","Get entity","Users","",""
-"","22","Get exercises","LMS service","Mon Mar 09 11:17:52 UTC 2026","passed","Mon Mar 09 11:17:52 UTC 2026","Get entities","Exercises","",""
-"","76","Update course","LMS service","Mon Mar 09 11:17:48 UTC 2026","passed","Mon Mar 09 11:17:49 UTC 2026","Update entity","Courses","",""
+","13","Get user me","LMS service","Mon Mar 09 11:22:17 UTC 2026","passed","Mon Mar 09 11:22:17 UTC 2026","Get entity","Users","",""
 "
-Тест проверки авторизации и получения данных пользователя.
-
-:param public_users_client: Клиент для взаимодействия с публичным API пользователей.
-:param authentication_client: Клиент для выполнения операций аутентификации.
-:param function_user: Фикстура, возвращающая данные созданного и авторизованного пользователя.
-
-","547","Create and check user","LMS service","Mon Mar 09 11:17:52 UTC 2026","passed","Mon Mar 09 11:17:53 UTC 2026","Create entity","Users","",""
-"
-Тест успешной авторизации пользователя в системе.
- Описание шагов:
-1. Создаётся новый пользователь.
-2. Выполняется запрос на авторизацию.
-3. Проверяется статус-код ответа.
-4. Проверяется структура и содержание токена в ответе.
-","526","Correct login","LMS service","Mon Mar 09 11:17:47 UTC 2026","passed","Mon Mar 09 11:17:47 UTC 2026","Login","Authentication","",""
-"","21","Get exercise","LMS service","Mon Mar 09 11:17:50 UTC 2026","passed","Mon Mar 09 11:17:50 UTC 2026","Get entity","Exercises","",""
-"","28","Get courses","LMS service","Mon Mar 09 11:17:47 UTC 2026","passed","Mon Mar 09 11:17:47 UTC 2026","Get entities","Courses","",""
-"","17","Delete exercise","LMS service","Mon Mar 09 11:17:51 UTC 2026","passed","Mon Mar 09 11:17:51 UTC 2026","Delete entity","Exercises","",""
-"","44","Create course","LMS service","Mon Mar 09 11:17:49 UTC 2026","passed","Mon Mar 09 11:17:49 UTC 2026","Create entity","Courses","",""
+Тест создания нового юзера с разными параметрами доменов
+:param public_users_client - клиент для создания пользователей
+:param email - параметр домена для генерации почты
+","538","CREATE_ENTITY","LMS service","Mon Mar 09 11:22:15 UTC 2026","passed","Mon Mar 09 11:22:16 UTC 2026","Create entity","Users","",""
+"","21","Get exercise","LMS service","Mon Mar 09 11:22:13 UTC 2026","passed","Mon Mar 09 11:22:13 UTC 2026","Get entity","Exercises","",""
+"","62","Update course","LMS service","Mon Mar 09 11:22:12 UTC 2026","passed","Mon Mar 09 11:22:12 UTC 2026","Update entity","Courses","",""

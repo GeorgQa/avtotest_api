@@ -8,12 +8,12 @@ INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:800
 INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/courses
 INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
 INFO     COURSE_ASSERTIONS:courses.py:120 Check create course response
-INFO     BASE_ASSERTIONS:base.py:36 Check that "title" equals to Question measure question too employee.
-INFO     BASE_ASSERTIONS:base.py:36 Check that "max_score" equals to 61
-INFO     BASE_ASSERTIONS:base.py:36 Check that "min_score" equals to 26
-INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to From take clear amount small determine society. Type present free prove security. Bring whose strategy protect soon subject.
-Him range off itself. Environment itself list.
-INFO     BASE_ASSERTIONS:base.py:36 Check that "estimate time" equals to 7
-INFO     BASE_ASSERTIONS:base.py:36 Check that "preview_file_id" equals to 3d699213-77e2-4c40-afbb-ecad76b6049b
-INFO     BASE_ASSERTIONS:base.py:36 Check that "user_id" equals to c637d1fa-8804-406c-89b5-2d065d120384
+INFO     BASE_ASSERTIONS:base.py:36 Check that "title" equals to Quality some according.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "max_score" equals to 60
+INFO     BASE_ASSERTIONS:base.py:36 Check that "min_score" equals to 18
+INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to Several serious discover animal. Go husband huge recognize. Raise half source run.
+Recent raise our thus. So light the.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "estimate time" equals to 3
+INFO     BASE_ASSERTIONS:base.py:36 Check that "preview_file_id" equals to 3c204aa6-1f32-4e46-9576-bb684568bef9
+INFO     BASE_ASSERTIONS:base.py:36 Check that "user_id" equals to 214123f3-c040-4beb-aee2-72bea3cb5fec
 INFO     SCHEMA_ASSERTIONS:sсhema.py:19 Validating JSON schema
