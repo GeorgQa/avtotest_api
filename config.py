@@ -35,7 +35,9 @@ class Settings(BaseSettings):
         allure_results_dir.mkdir(exist_ok=True)  # Создаем папку allure-results, если она не существует
 
         # Передаем allure_results_dir в инициализацию настроек
-        return Settings(allure_results_dir=allure_results_dir)
+        return Settings(allure_results_dir=allure_results_dir,
+                        test_data=TestDataConfig(image_jpg_path="./testdata/files/image.png"),
+                        http_client=HTTPClientConfig(url='http://localhost:8000',timeout=4))
 
 
 # Теперь вызываем метод initialize
