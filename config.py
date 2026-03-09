@@ -1,43 +1,42 @@
-from pathlib import Path
 from typing import Self
 
-from pydantic import HttpUrl, BaseModel, FilePath, DirectoryPath
+from pydantic import BaseModel, HttpUrl, FilePath, DirectoryPath
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class TestDataConfig(BaseModel):
-    image_png_file: FilePath = 'testdata/files/image.png'
-
-class HTTPClientConfig(BaseSettings):
+class HTTPClientConfig(BaseModel):
     url: HttpUrl
     timeout: float
 
     @property
     def client_url(self) -> str:
-        return str(self.url).rstrip('/')
+        return str(self.url)
 
-class TestData(BaseModel):
+
+class TestDataConfig(BaseModel):
     image_png_file: FilePath
 
+
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        env_nested_delimiter=".",
+    )
 
     test_data: TestDataConfig
     http_client: HTTPClientConfig
-    allure_results_dir: DirectoryPath
+    allure_results_dir: DirectoryPath  # Добавили новое поле
 
-    model_config = SettingsConfigDict(
-        extra="allow",
-        env_file=".env.local",
-        env_file_encoding="utf-8",
-        env_nested_delimiter="."
-    )
-
+    # Добавили метод initialize
     @classmethod
-    def initialize(cls) -> Self:
-        # Создаем экземпляр настроек, который автоматически загрузит значения из .env.local
-        settings = cls()
-        # Убеждаемся, что директория для allure результатов создана
-        settings.allure_results_dir.mkdir(exist_ok=True)
-        return settings
+    def initialize(cls) -> Self:  # Возвращает экземпляр класса Settings
+        allure_results_dir = DirectoryPath("./allure-results")  # Создаем объект пути к папке
+        allure_results_dir.mkdir(exist_ok=True)  # Создаем папку allure-results, если она не существует
 
+        # Передаем allure_results_dir в инициализацию настроек
+        return Settings(allure_results_dir=allure_results_dir)
+
+
+# Теперь вызываем метод initialize
 settings = Settings.initialize()
