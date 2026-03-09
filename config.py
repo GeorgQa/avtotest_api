@@ -35,7 +35,7 @@ class Settings(BaseSettings):
 
         # Передаем allure_results_dir в инициализацию настроек
         return Settings(allure_results_dir=allure_results_dir,
-                        test_data=TestDataConfig(image_jpg_path="./testdata/files/image.png"),
+                        test_data=TestDataConfig(image_png_file="./testdata/files/image.png"),
                         http_client=HTTPClientConfig(url='http://localhost:8000', timeout=4))
 
 
