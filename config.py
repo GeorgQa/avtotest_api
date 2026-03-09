@@ -14,7 +14,7 @@ class HTTPClientConfig(BaseModel):
 
 
 class TestDataConfig(BaseModel):
-    image_png_file: FilePath
+    image_png_file: str
 
 
 class Settings(BaseSettings):
@@ -26,6 +26,7 @@ class Settings(BaseSettings):
     test_data: TestDataConfig
     http_client: HTTPClientConfig
     allure_results_dir: DirectoryPath  # Добавили новое поле
+    image_path: str = "./testdata/files/image.png"  # Добавили строковое поле для пути к изображению
 
     # Добавили метод initialize
     @classmethod
@@ -35,7 +36,7 @@ class Settings(BaseSettings):
 
         # Передаем allure_results_dir в инициализацию настроек
         return Settings(allure_results_dir=allure_results_dir,
-                        test_data=TestDataConfig(image_png_file="./testdata/files/image.png"),
+                        test_data=TestDataConfig(image_png_file=image_path),
                         http_client=HTTPClientConfig(url='http://localhost:8000', timeout=4))
 
 
