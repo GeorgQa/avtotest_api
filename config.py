@@ -26,17 +26,16 @@ class Settings(BaseSettings):
     test_data: TestDataConfig
     http_client: HTTPClientConfig
     allure_results_dir: DirectoryPath  # Добавили новое поле
-    image_path: str = "./testdata/files/image.png"  # Добавили строковое поле для пути к изображению
 
-    # Добавили метод initialize
     @classmethod
     def initialize(cls) -> Self:  # Возвращает экземпляр класса Settings
         allure_results_dir = DirectoryPath("./allure-results")  # Создаем объект пути к папке
         allure_results_dir.mkdir(exist_ok=True)  # Создаем папку allure-results, если она не существует
+        image_dir = TestDataConfig(image_png_file="./testdata/files/image.png")
 
         # Передаем allure_results_dir в инициализацию настроек
         return Settings(allure_results_dir=allure_results_dir,
-                        test_data=TestDataConfig(image_png_file=image_path),
+                        test_data=image_dir,
                         http_client=HTTPClientConfig(url='http://localhost:8000', timeout=4))
 
 
