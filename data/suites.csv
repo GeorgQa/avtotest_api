@@ -1,0 +1,41 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"
+Тест проверки авторизации и получения данных пользователя.
+
+:param public_users_client: Клиент для взаимодействия с публичным API пользователей.
+:param authentication_client: Клиент для выполнения операций аутентификации.
+:param function_user: Фикстура, возвращающая данные созданного и авторизованного пользователя.
+
+","546","Create and check user","LMS service","Mon Mar 09 09:46:38 UTC 2026","passed","Mon Mar 09 09:46:39 UTC 2026","Create entity","Users","",""
+"
+Тест на получение данных авторизованного пользователя через /api/v1/users/me.
+
+Использует фикстуру private_users_client для автоматической аутентификации.
+Проверяет, что возвращённые данные совпадают с данными созданного пользователя.
+
+:param private_users_client: Авторизованный клиент для доступа к приватным эндпоинтам.
+:param function_user: Фикстура с данными созданного пользователя.
+","16","Get user me","LMS service","Mon Mar 09 09:46:39 UTC 2026","passed","Mon Mar 09 09:46:40 UTC 2026","Get entity","Users","",""
+"
+Тест создания нового юзера с разными параметрами доменов
+:param public_users_client - клиент для создания пользователей
+:param email - параметр домена для генерации почты
+","273","CREATE_ENTITY","LMS service","Mon Mar 09 09:46:37 UTC 2026","passed","Mon Mar 09 09:46:37 UTC 2026","Create entity","Users","",""
+"
+Тест успешной авторизации пользователя в системе.
+ Описание шагов:
+1. Создаётся новый пользователь.
+2. Выполняется запрос на авторизацию.
+3. Проверяется статус-код ответа.
+4. Проверяется структура и содержание токена в ответе.
+","522","Correct login","LMS service","Mon Mar 09 09:46:38 UTC 2026","passed","Mon Mar 09 09:46:38 UTC 2026","Login","Authentication","",""
+"
+Тест создания нового юзера с разными параметрами доменов
+:param public_users_client - клиент для создания пользователей
+:param email - параметр домена для генерации почты
+","498","CREATE_ENTITY","LMS service","Mon Mar 09 09:46:37 UTC 2026","passed","Mon Mar 09 09:46:38 UTC 2026","Create entity","Users","",""
+"
+Тест создания нового юзера с разными параметрами доменов
+:param public_users_client - клиент для создания пользователей
+:param email - параметр домена для генерации почты
+","499","CREATE_ENTITY","LMS service","Mon Mar 09 09:46:38 UTC 2026","passed","Mon Mar 09 09:46:39 UTC 2026","Create entity","Users","",""
