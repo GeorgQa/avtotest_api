@@ -65,8 +65,7 @@ jobs:
             gh_pages: gh-pages
             allure_results: allure-results
             allure_history: allure-history
-            keep_reports: 20
-            subfolder: latest
+
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
