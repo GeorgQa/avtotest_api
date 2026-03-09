@@ -8,17 +8,18 @@ INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:800
 INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/courses
 INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/exercises
 INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises
-INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:8000/api/v1/exercises?courseId=26670357-3710-4e3d-b921-4e66f716a370
-INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises?courseId=26670357-3710-4e3d-b921-4e66f716a370
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:8000/api/v1/exercises?courseId=dc3f1947-ce47-416a-8c39-68cfa0081a6d
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises?courseId=dc3f1947-ce47-416a-8c39-68cfa0081a6d
 INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
 INFO     EXERCISE_ASSERTIONS:exercises.py:129 Check get exercises response
 INFO     EXERCISE_ASSERTIONS:exercises.py:50 Check exercise
-INFO     BASE_ASSERTIONS:base.py:36 Check that " exersice ID" equals to 74f756e4-66f8-4966-a6ba-93143adb30ee
-INFO     BASE_ASSERTIONS:base.py:36 Check that "course_id" equals to 26670357-3710-4e3d-b921-4e66f716a370
-INFO     BASE_ASSERTIONS:base.py:36 Check that "title" equals to Race bar stand everyone clear fly speech.
-INFO     BASE_ASSERTIONS:base.py:36 Check that "max score" equals to 98
-INFO     BASE_ASSERTIONS:base.py:36 Check that "min score" equals to 29
-INFO     BASE_ASSERTIONS:base.py:36 Check that "order index" equals to 25
-INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to Explain condition call environment yard table face skin. Determine member eat area. Bar individual plan computer feeling mention network.
-INFO     BASE_ASSERTIONS:base.py:36 Check that "estimate time" equals to 3
+INFO     BASE_ASSERTIONS:base.py:36 Check that " exersice ID" equals to 8abac2d5-1fc8-4e14-b12a-841a7d2a289e
+INFO     BASE_ASSERTIONS:base.py:36 Check that "course_id" equals to dc3f1947-ce47-416a-8c39-68cfa0081a6d
+INFO     BASE_ASSERTIONS:base.py:36 Check that "title" equals to Among key rock my political spring beat.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "max score" equals to 86
+INFO     BASE_ASSERTIONS:base.py:36 Check that "min score" equals to 24
+INFO     BASE_ASSERTIONS:base.py:36 Check that "order index" equals to 19
+INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to Manager every sense administration because summer behavior clearly. Away many politics car personal.
+Article gas role important. Call easy effort say hope each.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "estimate time" equals to 8
 INFO     SCHEMA_ASSERTIONS:sсhema.py:19 Validating JSON schema

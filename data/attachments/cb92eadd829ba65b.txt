@@ -1,0 +1,33 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:8000/api/v1/exercises/83d9c396-00f8-4e7d-9543-fdec90942ffb
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises/83d9c396-00f8-4e7d-9543-fdec90942ffb
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     EXERCISE_ASSERTIONS:exercises.py:50 Check exercise
+INFO     BASE_ASSERTIONS:base.py:36 Check that " exersice ID" equals to 83d9c396-00f8-4e7d-9543-fdec90942ffb
+INFO     BASE_ASSERTIONS:base.py:36 Check that "course_id" equals to 1c55d8e3-4312-4e34-9400-6c716a0aba2c
+INFO     BASE_ASSERTIONS:base.py:36 Check that "title" equals to Move these discussion few less set language develop.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "max score" equals to 88
+INFO     BASE_ASSERTIONS:base.py:36 Check that "min score" equals to 15
+INFO     BASE_ASSERTIONS:base.py:36 Check that "order index" equals to 20
+INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to Weight always gun so it leg staff. Scene movie worker without market option about fall. Sense much decide society.
+Once rock picture fight bring. Forward less mouth free. Current process late reach.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "estimate time" equals to 9
+INFO     EXERCISE_ASSERTIONS:exercises.py:71 Check get exercise response
+INFO     BASE_ASSERTIONS:base.py:36 Check that "exercise id" equals to 83d9c396-00f8-4e7d-9543-fdec90942ffb
+INFO     BASE_ASSERTIONS:base.py:36 Check that "course_id" equals to 1c55d8e3-4312-4e34-9400-6c716a0aba2c
+INFO     BASE_ASSERTIONS:base.py:36 Check that "max score" equals to 88
+INFO     BASE_ASSERTIONS:base.py:36 Check that "min score" equals to 15
+INFO     BASE_ASSERTIONS:base.py:36 Check that "order index" equals to 20
+INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to Weight always gun so it leg staff. Scene movie worker without market option about fall. Sense much decide society.
+Once rock picture fight bring. Forward less mouth free. Current process late reach.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "estimate time" equals to 9
+INFO     SCHEMA_ASSERTIONS:sсhema.py:19 Validating JSON schema

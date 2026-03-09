@@ -8,15 +8,15 @@ INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:800
 INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/courses
 INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/exercises
 INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises
-INFO     HTTP_CLIENT:event_hooks.py:28 Make PATCH request to http://localhost:8000/api/v1/exercises/96e990c6-58ec-4fc2-8e7e-1cc515dc7262
-INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises/96e990c6-58ec-4fc2-8e7e-1cc515dc7262
+INFO     HTTP_CLIENT:event_hooks.py:28 Make PATCH request to http://localhost:8000/api/v1/exercises/7aac8034-45df-4460-b0c2-0caafdfaac5a
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises/7aac8034-45df-4460-b0c2-0caafdfaac5a
 INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
 INFO     EXERCISE_ASSERTIONS:exercises.py:99 Check update exercise response
 INFO     BASE_ASSERTIONS:base.py:36 Check that "title" equals to Updated title
 INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to updated desc
 INFO     BASE_ASSERTIONS:base.py:36 Check that "max score" equals to 111
-INFO     BASE_ASSERTIONS:base.py:36 Check that "min score" equals to 25
-INFO     BASE_ASSERTIONS:base.py:36 Check that "order index" equals to 62
-INFO     BASE_ASSERTIONS:base.py:36 Check that "estimated time" equals to 6
+INFO     BASE_ASSERTIONS:base.py:36 Check that "min score" equals to 12
+INFO     BASE_ASSERTIONS:base.py:36 Check that "order index" equals to 95
+INFO     BASE_ASSERTIONS:base.py:36 Check that "estimated time" equals to 3
 INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to updated desc
 INFO     SCHEMA_ASSERTIONS:sсhema.py:19 Validating JSON schema
