@@ -1,0 +1,18 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/courses
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     COURSE_ASSERTIONS:courses.py:120 Check create course response
+INFO     BASE_ASSERTIONS:base.py:36 Check that "title" equals to Charge sister generation trouble wonder fall next.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "max_score" equals to 91
+INFO     BASE_ASSERTIONS:base.py:36 Check that "min_score" equals to 13
+INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to Successful enter according candidate. Month pick view push. Office accept fill walk. Individual describe would land resource so shake long.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "estimate time" equals to 6
+INFO     BASE_ASSERTIONS:base.py:36 Check that "preview_file_id" equals to 8d699ed8-849a-4afb-ad3b-ce95e2205742
+INFO     BASE_ASSERTIONS:base.py:36 Check that "user_id" equals to 094aadc7-1e25-4d5c-9479-9dd4ead0001a
+INFO     SCHEMA_ASSERTIONS:sсhema.py:19 Validating JSON schema

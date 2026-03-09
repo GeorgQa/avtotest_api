@@ -1,0 +1,31 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:8000/api/v1/exercises/aa2ad16d-b3e9-48bf-bd15-57033c28012b
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises/aa2ad16d-b3e9-48bf-bd15-57033c28012b
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     EXERCISE_ASSERTIONS:exercises.py:50 Check exercise
+INFO     BASE_ASSERTIONS:base.py:36 Check that " exersice ID" equals to aa2ad16d-b3e9-48bf-bd15-57033c28012b
+INFO     BASE_ASSERTIONS:base.py:36 Check that "course_id" equals to d2bcf1be-a263-45b9-84b5-f00908614d00
+INFO     BASE_ASSERTIONS:base.py:36 Check that "title" equals to Age human pretty.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "max score" equals to 70
+INFO     BASE_ASSERTIONS:base.py:36 Check that "min score" equals to 25
+INFO     BASE_ASSERTIONS:base.py:36 Check that "order index" equals to 67
+INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to Purpose almost term material resource above. Even color act choose. Quality right site discuss employee former phone thus.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "estimate time" equals to 1
+INFO     EXERCISE_ASSERTIONS:exercises.py:71 Check get exercise response
+INFO     BASE_ASSERTIONS:base.py:36 Check that "exercise id" equals to aa2ad16d-b3e9-48bf-bd15-57033c28012b
+INFO     BASE_ASSERTIONS:base.py:36 Check that "course_id" equals to d2bcf1be-a263-45b9-84b5-f00908614d00
+INFO     BASE_ASSERTIONS:base.py:36 Check that "max score" equals to 70
+INFO     BASE_ASSERTIONS:base.py:36 Check that "min score" equals to 25
+INFO     BASE_ASSERTIONS:base.py:36 Check that "order index" equals to 67
+INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to Purpose almost term material resource above. Even color act choose. Quality right site discuss employee former phone thus.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "estimate time" equals to 1
+INFO     SCHEMA_ASSERTIONS:sсhema.py:19 Validating JSON schema

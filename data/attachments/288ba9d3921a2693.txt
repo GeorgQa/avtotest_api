@@ -1,0 +1,25 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:8000/api/v1/exercises?courseId=9485ef66-8382-4d45-ab83-d2d686404274
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises?courseId=9485ef66-8382-4d45-ab83-d2d686404274
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     EXERCISE_ASSERTIONS:exercises.py:129 Check get exercises response
+INFO     EXERCISE_ASSERTIONS:exercises.py:50 Check exercise
+INFO     BASE_ASSERTIONS:base.py:36 Check that " exersice ID" equals to ad29ccab-0af1-47d1-ad34-a34700b75f23
+INFO     BASE_ASSERTIONS:base.py:36 Check that "course_id" equals to 9485ef66-8382-4d45-ab83-d2d686404274
+INFO     BASE_ASSERTIONS:base.py:36 Check that "title" equals to Husband administration bit physical probably break tell.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "max score" equals to 53
+INFO     BASE_ASSERTIONS:base.py:36 Check that "min score" equals to 22
+INFO     BASE_ASSERTIONS:base.py:36 Check that "order index" equals to 46
+INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to Child service resource operation reflect box.
+Fight defense value strategy tell push partner. Major throughout account would campaign house to analysis. Green new pretty serious.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "estimate time" equals to 2
+INFO     SCHEMA_ASSERTIONS:sсhema.py:19 Validating JSON schema
