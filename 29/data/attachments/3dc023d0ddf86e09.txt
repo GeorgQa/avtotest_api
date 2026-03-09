@@ -1,0 +1,23 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     EXERCISE_ASSERTIONS:exercises.py:29 Check create exercise response
+INFO     BASE_ASSERTIONS:base.py:36 Check that "title" equals to Hand just should.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "course_id" equals to 0ef00726-225c-4d6f-8265-8cba456c104a
+INFO     BASE_ASSERTIONS:base.py:36 Check that "max_score" equals to 78
+INFO     BASE_ASSERTIONS:base.py:36 Check that "min_score" equals to 21
+INFO     BASE_ASSERTIONS:base.py:36 Check that "order_index" equals to 61
+INFO     BASE_ASSERTIONS:base.py:36 Check that "description" equals to View establish serve ten. Role resource imagine lead hour. Institution white choice along expert.
+Provide throughout show figure various. Force last whole herself popular body.
+INFO     BASE_ASSERTIONS:base.py:36 Check that "estimated_time" equals to 4
+INFO     SCHEMA_ASSERTIONS:sсhema.py:19 Validating JSON schema
