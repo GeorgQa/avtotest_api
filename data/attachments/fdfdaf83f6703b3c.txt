@@ -1,0 +1,17 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/users
+INFO     USERS_ASSERTIONS:users.py:25 Check create user response
+INFO     BASE_ASSERTIONS:base.py:36 Check that "email" equals to frankpadilla@example.net
+INFO     BASE_ASSERTIONS:base.py:36 Check that "last_name" equals to Williams
+INFO     BASE_ASSERTIONS:base.py:36 Check that "first_name" equals to Samantha
+INFO     BASE_ASSERTIONS:base.py:36 Check that "middle_name" equals to Regina
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:8000/api/v1/users/8d482d55-7c37-4ac7-9bdf-b8019cacc0f4
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/users/8d482d55-7c37-4ac7-9bdf-b8019cacc0f4
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     BASE_ASSERTIONS:base.py:36 Check that "id" equals to 8d482d55-7c37-4ac7-9bdf-b8019cacc0f4
+INFO     BASE_ASSERTIONS:base.py:36 Check that "email" equals to frankpadilla@example.net
+INFO     BASE_ASSERTIONS:base.py:36 Check that "first name" equals to Samantha
+INFO     BASE_ASSERTIONS:base.py:36 Check that "last name" equals to Williams
+INFO     BASE_ASSERTIONS:base.py:36 Check that "middle name" equals to Regina
