@@ -1,7 +1,8 @@
-from pathlib import Path
+
 from typing import Self
-from pydantic import BaseModel, HttpUrl, FilePath, DirectoryPath
+from pydantic import BaseModel, HttpUrl, DirectoryPath
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
 
 
 class HTTPClientConfig(BaseModel):
@@ -14,7 +15,7 @@ class HTTPClientConfig(BaseModel):
 
 
 class TestDataConfig(BaseModel):
-    image_png_file: FilePath
+    image_png_file: str
 
 
 class Settings(BaseSettings):
@@ -36,7 +37,7 @@ class Settings(BaseSettings):
         # Передаем allure_results_dir в инициализацию настроек
         return Settings(
             allure_results_dir=allure_results_dir,
-            test_data=TestDataConfig(image_png_file="./testdata/files/image.png"),
+            test_data=TestDataConfig(image_png_file="./testdata/files/image.png"),  # Проверка: файл существует
             http_client=HTTPClientConfig(url="http://localhost:8000", timeout=4.0)
         )
 
