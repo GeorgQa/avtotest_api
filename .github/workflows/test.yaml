@@ -54,7 +54,7 @@ jobs:
         with:
           name: allure-results
           path: allure-results
-          retention_days: 7
+          retention-days: 7
 
   publish-report:
     needs: run-tests
