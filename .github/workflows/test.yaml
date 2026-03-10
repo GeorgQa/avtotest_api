@@ -49,6 +49,23 @@ jobs:
         run: |
           pytest -m regression --alluredir=allure-results --numprocesses=5
 
+      - name: Upload artefact from generate report
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-results
+          path: allure-results
+          retention_days: 7
+
+  publish-report:
+    needs: run-tests
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Download artifact report
+        uses : actions/download-artifact@8
+        with:
+          name: allure-results
+
       - name: Get Allure history from gh-pages
         uses: actions/checkout@v4
         if: always()
@@ -65,7 +82,6 @@ jobs:
             gh_pages: gh-pages
             allure_results: allure-results
             allure_history: allure-history
-
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
