@@ -1,5 +1,4 @@
-from  enum import Enum
-
+from enum import Enum
 
 
 class APIRoutes(str, Enum):

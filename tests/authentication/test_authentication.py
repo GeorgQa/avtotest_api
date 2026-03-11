@@ -5,10 +5,8 @@ import pytest
 from allure_commons.types import Severity
 
 from clients.authentication.authentication_client import AuthenticationClient
-from clients.authentication.authentication_schema import (
-    LoginRequestSchema,
-    LoginResponseSchema,
-)
+from clients.authentication.authentication_schema import (LoginRequestSchema,
+                                                          LoginResponseSchema)
 from clients.users.public_users_client import PublicUsersClient
 from fixtures.users import UserFixture
 from tools.allure.epics import AllureEpic

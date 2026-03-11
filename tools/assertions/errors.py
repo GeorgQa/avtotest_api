@@ -1,6 +1,8 @@
 import allure
 
-from clients.error_schema import ValidationErrorSchema, ValidationErrorResponseSchema, InternalErrorResponseSchema
+from clients.error_schema import (InternalErrorResponseSchema,
+                                  ValidationErrorResponseSchema,
+                                  ValidationErrorSchema)
 from tools.assertions.base import assert_equal, assert_length
 from tools.loger import get_logger
 

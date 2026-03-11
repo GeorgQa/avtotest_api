@@ -3,9 +3,11 @@ from functools import lru_cache
 from httpx import Client
 from pydantic import BaseModel, ConfigDict
 
-from clients.authentication.authentication_client import get_authentication_client
+from clients.authentication.authentication_client import \
+    get_authentication_client
 from clients.authentication.authentication_schema import LoginRequestSchema
-from clients.event_hooks import curl_event_hook, log_request_event_hook, log_response_event_hook
+from clients.event_hooks import (curl_event_hook, log_request_event_hook,
+                                 log_response_event_hook)
 from config import settings
 
 

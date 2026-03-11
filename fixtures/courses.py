@@ -1,10 +1,8 @@
 import pytest
 from pydantic import BaseModel
 
-from clients.courses.course_schema import (
-    CreateCourseRequestSchema,
-    CreateCourseResponseSchema,
-)
+from clients.courses.course_schema import (CreateCourseRequestSchema,
+                                           CreateCourseResponseSchema)
 from clients.courses.courses_client import CoursesClient, get_courses_client
 from fixtures.files import FileFixture
 from fixtures.users import UserFixture
