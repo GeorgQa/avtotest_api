@@ -1,8 +1,0 @@
-{
-  "services": {
-    "api-course": {
-      "base_url": "http://localhost:8000",
-      "openapi_schema_path": "/api/v1/openapi.json"
-    }
-  }
-}
