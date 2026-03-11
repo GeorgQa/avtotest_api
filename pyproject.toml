@@ -10,7 +10,6 @@ services = [
   }
 ]
 
-[tool.swagger_coverage]
 results_dir = "./coverage-results"
 history_file = "./coverage-history.json"
 history_retention_limit = 30
