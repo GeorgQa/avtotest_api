@@ -46,8 +46,6 @@ jobs:
           pip install allure-pytest  # Убедимся что allure-pytest установлен
 
       - name: Run API tests with pytest and generate Allure results
-        env:
-          SWAGGER_COVERAGE_CONFIG: .github/swagger_coverage_config.json
         run: |
           pytest -m regression --alluredir=allure-results --numprocesses=5
           
