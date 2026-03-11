@@ -9,7 +9,7 @@ settings = Settings(
             "key": "api-course",
             "name": "API Course",
             "base_url": "http://localhost:8000",
-            "swagger_url": "/api/v1/openapi.json",
+            "swagger_url": "http://localhost:8000/api/v1/openapi.json",
             "tags": ["API", "COURSES"],
             "repository": "https://github.com/Nikita-Filonov/qa-automation-engineer-api-course"
         }
