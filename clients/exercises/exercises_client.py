@@ -1,5 +1,3 @@
-import json
-
 import allure
 from httpx import Response
 
