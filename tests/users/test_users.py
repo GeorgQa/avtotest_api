@@ -143,3 +143,24 @@ class TestUsers:
 
         # Валидация по json схеме
         validate_json_schema(response.json(), response_data.model_json_schema())
+
+
+    @allure.tag(AllureTag.GET_ENTITY)
+    @allure.title("Delete user")
+    @allure.story(AllureStory.GET_ENTITY)
+    @allure.severity(Severity.CRITICAL)
+    @allure.sub_suite(AllureStory.GET_ENTITY)
+    def test_delete_user(self, private_users_client: PrivateUsersClient, function_user: UserFixture):
+        """
+        Тест на удаления пользователя
+
+        :param private_users_client: Авторизованный климет для достпуа к привантым эндпоинтам
+        :param function_user: фикстра с данными созданного пользователя
+        """
+        assert_create_user_response(
+            request=function_user.request, response=function_user.response
+        )
+        user_id = function_user.response.user.id
+
+        response = private_users_client.delete_user_api(user_id)
+        assert_status_code(response.status_code ,HTTPStatus.OK)

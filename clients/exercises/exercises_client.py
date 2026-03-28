@@ -19,7 +19,7 @@ class ExercisesClient(APIClient):
     Клиент для работы с api /api/v1/exercises.
     """
 
-    @tracker.track_coverage_httpx(f"{APIRoutes.EXERCISES}")
+    @tracker.track_coverage_httpx(APIRoutes.EXERCISES)
     @allure.step("Get exercises")
     def get_exercises_api(self, query: GetExercisesQuerySchema) -> Response:
         """
@@ -30,7 +30,7 @@ class ExercisesClient(APIClient):
         """
         return self.get(url=APIRoutes.EXERCISES, params=query.model_dump(by_alias=True))
 
-    @tracker.track_coverage_httpx(f"{APIRoutes.EXERCISES}")
+    @tracker.track_coverage_httpx(APIRoutes.EXERCISES)
     @allure.step("Create exercise")
     def create_exercise_api(self, request: CreateExerciseRequestSchema) -> Response:
         """
