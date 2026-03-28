@@ -2,7 +2,7 @@ import allure
 from httpx import Response
 
 from clients.api_client import APIClient
-from clients.api_coverage import tracker
+
 from clients.courses.course_schema import (CreateCourseRequestSchema,
                                            CreateCourseResponseSchema,
                                            GetCoursesQuerySchema,
@@ -17,7 +17,6 @@ class CoursesClient(APIClient):
     Клиент для работы с /api/v1/courses
     """
 
-    @tracker.track_coverage_httpx(f"{APIRoutes.COURSES}")
     @allure.step("Get courses")
     def get_courses_api(self, query: GetCoursesQuerySchema) -> Response:
         """
@@ -28,7 +27,6 @@ class CoursesClient(APIClient):
         """
         return self.get(url=APIRoutes.COURSES, params=query.model_dump(by_alias=True))
 
-    @tracker.track_coverage_httpx(f"{APIRoutes.COURSES}/{{course_id}}")
     @allure.step("Get course by id {course_id}")
     def get_course_api(self, course_id: str) -> Response:
         """
@@ -39,7 +37,6 @@ class CoursesClient(APIClient):
         """
         return self.get(f"{APIRoutes.COURSES}/{course_id}")
 
-    @tracker.track_coverage_httpx(f"{APIRoutes.COURSES}")
     @allure.step("Ceated course")
     def create_course_api(self, request: CreateCourseRequestSchema) -> Response:
         """
@@ -51,7 +48,6 @@ class CoursesClient(APIClient):
         """
         return self.post(url= APIRoutes.COURSES, json=request.model_dump(by_alias=True))
 
-    @tracker.track_coverage_httpx(f"{APIRoutes.COURSES}/{{course_id}}")
     @allure.step("Update course by id {course_id}")
     def update_course_api(
         self, course_id: str, request: UpdateCourseRequestSchema
@@ -68,7 +64,6 @@ class CoursesClient(APIClient):
             json=request.model_dump(by_alias=True, exclude_unset=True),
         )
 
-    @tracker.track_coverage_httpx(f"{APIRoutes.COURSES}/{{course_id}}")
     @allure.step("Delete course by id {course_id}")
     def delete_course_api(self, course_id: str) -> Response:
         """
