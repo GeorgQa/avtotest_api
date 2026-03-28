@@ -5,28 +5,26 @@ import pytest
 
 from clients.error_schema import InternalErrorResponseSchema
 from clients.exercises.exercises_client import ExercisesClient
-from clients.exercises.exercises_schema import (
-    CreateExerciseRequestSchema,
-    CreateExerciseResponseSchema,
-    GetExerciseResponseSchema, UpdateExerciseRequestSchema, UpdateExerciseResponseSchema,
-    GetExercisesQuerySchema, GetExercisesResponseSchema,
-)
+from clients.exercises.exercises_schema import (CreateExerciseRequestSchema,
+                                                CreateExerciseResponseSchema,
+                                                GetExerciseResponseSchema,
+                                                GetExercisesQuerySchema,
+                                                GetExercisesResponseSchema,
+                                                UpdateExerciseRequestSchema,
+                                                UpdateExerciseResponseSchema)
 from fixtures.courses import CoursesFixture
 from fixtures.exercises import ExercisesFixture
 from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
-
 from tools.allure.stories import AllureStory
-
 from tools.allure.tags import AllureTag
 from tools.assertions.base import assert_status_code
-
-from tools.assertions.exercises import (
-    assert_create_exercise_response,
-    assert_exercise,
-    assert_get_exercise_response, assert_update_exercise_response,
-    assert_get_exercises_response, assert_exercises_not_found_response,
-)
+from tools.assertions.exercises import (assert_create_exercise_response,
+                                        assert_exercise,
+                                        assert_exercises_not_found_response,
+                                        assert_get_exercise_response,
+                                        assert_get_exercises_response,
+                                        assert_update_exercise_response)
 from tools.assertions.sсhema import validate_json_schema
 
 

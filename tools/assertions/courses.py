@@ -1,15 +1,13 @@
 import allure
 
 from api_client_create_course import create_course_response
-from clients.courses.course_schema import (
-    CourseSchema,
-    CreateCourseRequestSchema,
-    CreateCourseResponseSchema,
-    GetCoursesResponseSchema,
-    GetIDCoursesResponseSchema,
-    UpdateCourseRequestSchema,
-    UpdateCourseResponseSchema,
-)
+from clients.courses.course_schema import (CourseSchema,
+                                           CreateCourseRequestSchema,
+                                           CreateCourseResponseSchema,
+                                           GetCoursesResponseSchema,
+                                           GetIDCoursesResponseSchema,
+                                           UpdateCourseRequestSchema,
+                                           UpdateCourseResponseSchema)
 from fixtures.courses import CoursesFixture
 from tools.assertions.base import assert_equal
 from tools.assertions.files import assert_files

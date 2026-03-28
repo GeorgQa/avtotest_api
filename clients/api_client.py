@@ -1,8 +1,9 @@
 from typing import Any
 
+import allure
 from httpx import URL, Client, QueryParams, Response
 from httpx._types import RequestData, RequestFiles
-import allure
+
 
 class APIClient:
     def __init__(self, client: Client):

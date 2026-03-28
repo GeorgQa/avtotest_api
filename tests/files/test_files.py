@@ -2,23 +2,28 @@ from http import HTTPStatus
 
 import allure
 import pytest
-
 from allure_commons.types import Severity
-from clients.error_schema import ValidationErrorResponseSchema, InternalErrorResponseSchema
-from clients.files.file_schema import CreateFileRequestSchema, CreateFileResponseSchema, GetFileResponseSchema
+
+from clients.error_schema import (InternalErrorResponseSchema,
+                                  ValidationErrorResponseSchema)
+from clients.files.file_schema import (CreateFileRequestSchema,
+                                       CreateFileResponseSchema,
+                                       GetFileResponseSchema)
 from clients.files.files_client import FilesClient
+from config import settings
 from fixtures.files import FileFixture
-from httpx_create_file import response_create_file
 from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
 from tools.allure.tags import AllureTag
 from tools.assertions.base import assert_status_code
-from tools.assertions.files import assert_create_file_response, assert_file_is_accessible, assert_get_file_response, \
-    assert_create_file_with_empty_filename_response, assert_create_file_with_empty_directory_response, \
-    assert_file_not_found_response, assert_get_file_with_incorrect_file_id_response
+from tools.assertions.files import (
+    assert_create_file_response,
+    assert_create_file_with_empty_directory_response,
+    assert_create_file_with_empty_filename_response, assert_file_is_accessible,
+    assert_file_not_found_response, assert_get_file_response,
+    assert_get_file_with_incorrect_file_id_response)
 from tools.assertions.sсhema import validate_json_schema
-from config import settings
 
 
 @pytest.mark.regression

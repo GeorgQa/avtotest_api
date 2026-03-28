@@ -1,3 +1,5 @@
+import uuid
+
 from pydantic import BaseModel, ConfigDict, Field
 
 from tools.faker_data import fake
@@ -24,7 +26,7 @@ class CreateUserRequestSchema(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="forbid")
 
-    email: str = Field(default_factory=fake.email)
+    email: str = Field(default_factory=lambda: f"user_{uuid.uuid4().hex[:6]}@example.com")
     password: str = Field(default_factory=fake.password)
     last_name: str = Field(alias="lastName", default_factory=fake.last_name)
     first_name: str = Field(alias="firstName", default_factory=fake.first_name)

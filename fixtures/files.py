@@ -3,7 +3,8 @@ from pathlib import Path
 import pytest
 from pydantic import BaseModel
 
-from clients.files.file_schema import CreateFileRequestSchema, CreateFileResponseSchema
+from clients.files.file_schema import (CreateFileRequestSchema,
+                                       CreateFileResponseSchema)
 from clients.files.files_client import FilesClient, get_files_client
 from config import settings
 from fixtures.users import UserFixture

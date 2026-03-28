@@ -1,8 +1,8 @@
 
 from typing import Self
-from pydantic import BaseModel, HttpUrl, DirectoryPath
-from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from pydantic import BaseModel, DirectoryPath, HttpUrl
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class HTTPClientConfig(BaseModel):
