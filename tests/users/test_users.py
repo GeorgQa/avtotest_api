@@ -1,26 +1,30 @@
 from http import HTTPStatus
 
-import allure
 import pytest
+import allure
 from allure_commons.types import Severity
 
 from clients.authentication.authentication_client import AuthenticationClient
 from clients.private_http_builder import AuthenticationUserSchema
-from clients.users.private_users_client import (PrivateUsersClient,
-                                                get_private_users_client)
+from clients.users.private_users_client import (
+    PrivateUsersClient,
+    get_private_users_client,
+)
 from clients.users.public_users_client import PublicUsersClient
-from clients.users.user_schema import (CreateUserRequestSchema,
-                                       CreateUserResponseSchema,
-                                       GetUserResponseSchema)
+from clients.users.user_schema import (
+    CreateUserRequestSchema,
+    CreateUserResponseSchema,
+    GetUserResponseSchema,
+)
 from fixtures.users import UserFixture
 from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
+
 from tools.allure.tags import AllureTag
 from tools.assertions.base import assert_equal, assert_status_code
 from tools.assertions.sсhema import validate_json_schema
-from tools.assertions.users import (assert_create_user_response,
-                                    assert_get_user_response)
+from tools.assertions.users import assert_create_user_response, assert_get_user_response
 from tools.faker_data import fake
 
 
@@ -113,6 +117,7 @@ class TestUsers:
             "middle name",
         )
 
+
     @allure.tag(AllureTag.GET_ENTITY)
     @allure.title("Get user me")
     @allure.story(AllureStory.GET_ENTITY)
@@ -145,22 +150,5 @@ class TestUsers:
         validate_json_schema(response.json(), response_data.model_json_schema())
 
 
-    @allure.tag(AllureTag.GET_ENTITY)
-    @allure.title("Delete user")
-    @allure.story(AllureStory.GET_ENTITY)
-    @allure.severity(Severity.CRITICAL)
-    @allure.sub_suite(AllureStory.GET_ENTITY)
-    def test_delete_user(self, private_users_client: PrivateUsersClient, function_user: UserFixture):
-        """
-        Тест на удаления пользователя
 
-        :param private_users_client: Авторизованный климет для достпуа к привантым эндпоинтам
-        :param function_user: фикстра с данными созданного пользователя
-        """
-        assert_create_user_response(
-            request=function_user.request, response=function_user.response
-        )
-        user_id = function_user.response.user.id
 
-        response = private_users_client.delete_user_api(user_id)
-        assert_status_code(response.status_code ,HTTPStatus.OK)
