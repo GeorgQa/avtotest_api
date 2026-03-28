@@ -148,3 +148,7 @@ class TestUsers:
 
         # Валидация по json схеме
         validate_json_schema(response.json(), response_data.model_json_schema())
+
+
+
+
