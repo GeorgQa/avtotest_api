@@ -100,6 +100,8 @@ class TestCourses:
         # Проверяем соответствие Json ответа схеме
         validate_json_schema(response.json(), response_data.model_json_schema())
 
+
+
     @allure.tag(AllureTag.CREATE_ENTITY)
     @allure.title("Create course")
     @allure.story(AllureStory.CREATE_ENTITY)
