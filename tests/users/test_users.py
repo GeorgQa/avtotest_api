@@ -117,6 +117,7 @@ class TestUsers:
             "middle name",
         )
 
+
     @allure.tag(AllureTag.GET_ENTITY)
     @allure.title("Get user me")
     @allure.story(AllureStory.GET_ENTITY)
