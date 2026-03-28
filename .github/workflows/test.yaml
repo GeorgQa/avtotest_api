@@ -48,15 +48,6 @@ jobs:
       - name: Run API tests with pytest and generate Allure results
         run: |
           pytest -m regression --alluredir=allure-results --numprocesses=5
-          
-           # Восстанавливаем историю покрытия из кеша
-      - name: Restore Coverage history
-        uses: actions/cache/restore@v4
-        with:
-          path: coverage-history.json
-          key: coverage-history-${{ github.run_id }}
-          restore-keys: |
-            coverage-history-
 
 
 
